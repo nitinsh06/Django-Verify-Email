@@ -19,6 +19,7 @@ Email verification for new signups or new users is a two-step verification proce
 * Added feature for **re-requesting email** in case the previous email was lost or deleted by mistake
 * Added a variable `REQUEST_NEW_EMAIL_TEMPLATE` where user can specify his custom template for requesting email again. More on this <a href='#resending-email-using-form'>here</a>.
 * Added a Django form for requesting email with a field `email`.
+* Support for DRF
 
 Read about this feature <a href='#resending-email-using-form'>here</a>
 
@@ -391,4 +392,19 @@ After verification is successful, you might want to redirect the user to the log
 
 > There is always room for improvements and new ideas, feel free to raise PR or Issues
 
+### DRF Support
+Using the latests commit(not yet published in the release of PyPi) you can easily adapt your view to support sending the verification!
+```python
+from verify_email.email_handler import _VerifyEmail
 
+class UserRegistrationView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+    
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        # Send email for verification
+        _VerifyEmail().send_verification_link(self.request, inactive_user=instance)
+        instance.save()
+```
