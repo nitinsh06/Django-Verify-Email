@@ -1,5 +1,5 @@
 {% extends "email_index.html" %}
-
+{% load i18n %}
 {%block content%}
 
 
@@ -17,13 +17,13 @@
 
             <div class="container" style="border: 0px solid;">
                 <h1 style="font-family: 'Mulish', sans-serif; text-align: center; color: white; font-size: calc(15px + 1.5vw);">
-                    Link Expired!
+                    {%trans "Link Expired!" %}
                 </h1>
             </div>
 
             <div class="mt-5">
                 <h1 style="font-family: 'Mulish', sans-serif; text-align: center; color: white; font-size: calc(15px + .5vw);">
-                    The link has lived its life :( Can not validate a dead link...
+                    {%trans "The link has lived its life :( Can not validate a dead link..." %}
                 </h1>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <div class="row justify-content-center">
         <a href="{% url 'request-new-link-from-token' encoded_email encoded_token %}" class="btn btn-primary"
            style="align-items: center; border-radius: 20px; margin-left: 10px; margin-right: 10px;">
-            Request Another one
+            {%trans "Request Another one"%}
         </a>
     </div>
 </div>

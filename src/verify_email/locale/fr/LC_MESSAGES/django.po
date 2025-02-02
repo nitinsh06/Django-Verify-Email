@@ -1,0 +1,203 @@
+# Translations for the django-email-verification application
+# Copyright (C) 2025 Olivier LEVILLAIN
+# This file is distributed under the same license as the django-email-verification package.
+# Olivier LEVILLAIN <olivier@levillain.eu>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.1.0\n"
+"Report-Msgid-Bugs-To: olivier@levillain.eu\n"
+"POT-Creation-Date: 2025-02-02 15:02+0100\n"
+"PO-Revision-Date: 2025-02-02 15:02+0100\n"
+"Last-Translator: Olivier LEVILLAIN <olivier@levillain.eu>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: src/verify_email/app_configurations.py:31
+msgid "Email Verification Mail"
+msgstr "Courriel de vérification d'adresse mail"
+
+#: src/verify_email/app_configurations.py:36
+msgid "email"
+msgstr "courriel"
+
+#: src/verify_email/app_configurations.py:61
+msgid ""
+"Your Email is verified successfully and account has been activated. You can "
+"login with the credentials now..."
+msgstr "Ton Email a été vérifié avec succès et ton compte a été activé. Tu peux "
+"maintenant te connecter avec tes identifiants..."
+
+#: src/verify_email/app_configurations.py:77
+msgid "There is something wrong with this link, can't verify the user..."
+msgstr "Quelque chose ne va pas avec ce lien, vérification de l'utilsateur impossible..."
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:10
+msgid "Verify Email address"
+msgstr "Vérifie l'adresse mail"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:52
+msgid "Account Activation"
+msgstr "Activation du compte"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:56
+msgid "E-mail Confirmation"
+msgstr "Confirmation de l'e-mail"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:59
+msgid "Greetings!"
+msgstr "Salut!"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:60
+msgid ""
+"You received this mail because you attempted to make account on our website. "
+"Please click on the link below to confirm the email and activate your "
+"account."
+msgstr ""
+"Tu as reçu ce mail car tu as essayé de créer un compte sur notre site web. "
+"Merci de cliquer sur le lien ci-dessous pour confirmer l'adresse mail et activer "
+"ton compte"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:64
+msgid "Please verify your e-mail :"
+msgstr "Merci de vérfier ton email"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:73
+msgid "You'll be joining us right after the verification !"
+msgstr "Tu nous rejoindras juste après la vérification"
+
+#: src/verify_email/templates/verify_email/email_verification_msg.html:77
+msgid ""
+"Thanks for joining! <br> This mail machine generated. <br>Do not reply to "
+"this mail"
+msgstr "Merci de nous rejoindre! <br> Mail généré par une machine <br>Ne pas répondre "
+
+#: src/verify_email/templates/verify_email/email_verification_successful.html:28
+msgid "Log In"
+msgstr "Connexion"
+
+#: src/verify_email/templates/verify_email/link_expired.html:20
+msgid "Link Expired!"
+msgstr "Lien expiré!"
+
+#: src/verify_email/templates/verify_email/link_expired.html:26
+msgid "The link has lived its life :( Can not validate a dead link..."
+msgstr "Le lien a vécu sa vie :( Impossible de valider un lien mort..."
+
+#: src/verify_email/templates/verify_email/link_expired.html:35
+msgid "Request Another one"
+msgstr "En demander un autre"
+
+#: src/verify_email/templates/verify_email/request_new_email.html:18
+msgid "Request New Email for Verification"
+msgstr "Demander un nouveau mail de vérification"
+
+#: src/verify_email/templates/verify_email/request_new_email.html:28
+msgid "Request New Email"
+msgstr "Demander un nouveau mail"
+
+#: src/verify_email/templates/verify_email/request_new_email.html:33
+msgid "Usually this template needs to be changed by your own app's template"
+msgstr "Normalement, ce template doit être modifié par le template de ta propre application"
+
+#: src/verify_email/views.py:48
+msgid "Method not allowed"
+msgstr "Méthode interdite"
+
+#: src/verify_email/views.py:60
+msgid "Verification Successful!"
+msgstr "Vérification réussie!"
+
+#: src/verify_email/views.py:74
+msgid "There is something wrong with this link..."
+msgstr "Quelque chose ne va pas avec ce lien..."
+
+#: src/verify_email/views.py:75
+msgid "Verification Failed!"
+msgstr "Vérification échouée!"
+
+#: src/verify_email/views.py:83
+msgid "The link has lived its life :( Request a new one!"
+msgstr "Le lien a vécu sa vie :( En demander un autre!"
+
+#: src/verify_email/views.py:84
+msgid "Expired!"
+msgstr "Expiré!"
+
+#: src/verify_email/views.py:94
+msgid "This link was modified before verification."
+msgstr "Ce lien a été modifié avant vérification."
+
+#: src/verify_email/views.py:95
+msgid "Cannot request another verification link with faulty link."
+msgstr "Impossible de demander un autre lien de vérification avec un lien défectueux."
+
+#: src/verify_email/views.py:96
+msgid "Faulty Link Detected!"
+msgstr "Lien défectueux détecté !"
+
+#: src/verify_email/views.py:104 src/verify_email/views.py:193
+msgid "You have exceeded the maximum verification requests! Contact admin."
+msgstr "Tu as dépassé le nombre maximum de demandes de vérification ! Contacte l'administrateur."
+
+#: src/verify_email/views.py:105 src/verify_email/views.py:194
+msgid "Maxed out!"
+msgstr "Au maximum !"
+
+#: src/verify_email/views.py:113 src/verify_email/views.py:202
+msgid ""
+"This link is invalid or been used already, we cannot verify using this link."
+msgstr ""
+"Ce lien n'est pas valide ou a déjà été utilisé, nous ne pouvons pas vérifier l'utilisation de ce lien."
+
+#: src/verify_email/views.py:114 src/verify_email/views.py:203
+msgid "Invalid Link"
+msgstr "Lien invalide"
+
+#: src/verify_email/views.py:118
+msgid "404 User not found"
+msgstr "404 Utilisateur non trouvé"
+
+#: src/verify_email/views.py:133
+msgid "User is already active"
+msgstr "Utilisateur déjà actif"
+
+#: src/verify_email/views.py:142 src/verify_email/views.py:165
+msgid "You have requested another verification email!"
+msgstr "Tu as demandé un autre courriel de vérification !"
+
+#: src/verify_email/views.py:143 src/verify_email/views.py:166
+msgid "Your verification link has been sent"
+msgstr "Ton lien de vérification a été envoyé"
+
+#: src/verify_email/views.py:144 src/verify_email/views.py:167
+msgid "Email Sent!"
+msgstr "Courriel envoyé !"
+
+#: src/verify_email/views.py:171
+msgid "Something went wrong during sending email :("
+msgstr "Un problème s'est produit lors de l'envoi du courriel :("
+
+#: src/verify_email/views.py:175
+msgid "User not found associated with given email!"
+msgstr "Utilisateur non trouvé associé à l'email donné !"
+
+#: src/verify_email/views.py:177
+msgid "User Not Found"
+msgstr "Utilisateur non trouvé"
+
+#: src/verify_email/views.py:181 src/verify_email/views.py:185
+msgid "Internal server error!"
+msgstr "Erreur de serveur interne !"
+
+#: src/verify_email/views.py:211
+msgid "This user's account is already active"
+msgstr "Le compte de cet utilisateur est déjà actif"
+
+#: src/verify_email/views.py:212
+msgid "Already Verified!"
+msgstr "Déjà vérifié !"

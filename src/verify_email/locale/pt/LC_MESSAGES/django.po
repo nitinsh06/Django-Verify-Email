@@ -1,0 +1,482 @@
+# Portuguese Translations for NO NAME FOUND app.
+# Copyright (C) 2025 Olivier LEVILLAIN
+# This file is distributed under the same license as the application.
+# This file was generated from ../Django-Verify-Email/src/verify_email/locale/fr/LC_MESSAGES/django.po by [Auto-po-lyglot](https://github.com/leolivier/auto-po-lyglot)
+# using the granite3.1-dense:2b model. Depending on the model, it may contain some errors and should be reviewed
+# by a human translator. Also depending on the model, each translation can be preceded by an explanation provided
+# by the model.
+# Olivier LEVILLAIN <OWNER EMAIL>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.1.0\n"
+"Report-Msgid-Bugs-To: olivier@levillain.eu\n"
+"POT-Creation-Date: 2025-02-02 15:02+0100\n"
+"PO-Revision-Date: 2025-02-02 16:33+00:00\n"
+"\n"
+"Last-Translator: Auto-po-lyglot using granite3.1-dense:2b (https://github.com/leolivier/auto-po-lyglot)\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Explanation: The English phrase "Email Verification Mail" translates to
+#. Portuguese as "Mai de Verificação de Endereço de Email". In this
+#. translation, "Email" is translated as "Endereço de Email", which means
+#. "email address". The term "Verification" remains the same in Portuguese.
+#: src/verify_email/app_configurations.py:31
+msgid "Email Verification Mail"
+msgstr "Mai de Verificação de Endereço de Email"
+
+#. Explanation: The English word "email" directly translates to Portuguese as
+#. "email". There is no need for additional context or explanation, as the
+#. term is universally recognized and its meaning remains consistent across
+#. languages.
+#. ```
+#. "email"
+#. ```
+#: src/verify_email/app_configurations.py:36
+msgid "email"
+msgstr "Email"
+
+#. Explanation: This Portuguese translation reflects the meaning of the French
+#. phrase, which indicates that the user's email verification was successful
+#. and their account has been activated. The English sentence conveys a
+#. similar message, emphasizing that the user can now log in using their
+#. provided credentials. Both translations maintain the same tone and nuance,
+#. ensuring the recipient understands they have successfully verified their
+#. email and gained access to their account.
+#: src/verify_email/app_configurations.py:61
+msgid ""
+"Your Email is verified successfully and account has been activated. You can "
+"login with the credentials now..."
+msgstr ""
+"Seu seu email foi verificado com sucesso e o seu conta foi ativada. Agora "
+"você pode se logar com seus detalhes..."
+
+#. Explanation: The English sentence conveys that there is an issue with a
+#. specific link and the user cannot verify it. This meaning is preserved in
+#. Portuguese as "Há algo errado com este link," which translates to "There is
+#. something wrong with this link." The phrase "não é possível verificar o
+#. usuário" (cannot verify the user) is translated as "não é possível
+#. verificar o usuário..." to maintain the progressive aspect, indicating an
+#. ongoing process of verification.
+#: src/verify_email/app_configurations.py:77
+msgid "There is something wrong with this link, can't verify the user..."
+msgstr "Há algo errado com este link, não é possível verificar o usuário..."
+
+#. Explanation: The English phrase "Verify Email address" translates directly
+#. to Portuguese as "Verifique o endereço de e-mail". This maintains the
+#. meaning of checking or confirming an email address.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:10
+msgid "Verify Email address"
+msgstr "Verifique o endereço de e-mail"
+
+#. Explanation: The English phrase "Account Activation" translates directly to
+#. Portuguese as "Ativação da conta," where "da conta" refers to the account.
+#. This maintains the meaning and tone of the original sentence, indicating
+#. that an account is being activated.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:52
+msgid "Account Activation"
+msgstr "Ativação da conta"
+
+#. Explanation: The English phrase "E-mail Confirmation" translates directly
+#. to Portuguese as "Confirmação do e-mail," preserving the meaning and
+#. maintaining the same grammatical structure. In this context, "e-mail" is a
+#. noun in Portuguese, just as it is in English. The translation reflects the
+#. French equivalent "Confirmation de l'e-mail," which indicates that the
+#. action of confirmation pertains to an email.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:56
+msgid "E-mail Confirmation"
+msgstr "Confirmação do e-mail"
+
+#. Explanation: The English phrase "Greetings!" is a formal way to address
+#. someone, similar to the French "Salut!". In Portuguese, this informal
+#. greeting translates directly as "Olá!", which maintains the same level of
+#. formality and warmth.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:59
+msgid "Greetings!"
+msgstr "Olá!"
+
+#. Explanation: The English sentence conveys that the recipient received an
+#. email due to their attempt to create an account on the website. This is
+#. accurately translated into Portuguese as "Você recebeu esse e-mail porque
+#. tentou criar um cadastro em nosso site," which means "You received this
+#. email because you tried to create a registration on our site." The phrase
+#. "please click on the link below" is translated as "por favor, clique no
+#. link abaixo," meaning "please click on the link below." The action of
+#. confirming an email and activating an account is conveyed in Portuguese as
+#. "confirmar a sua conta de e-mail e ativar seu cadastro," which translates
+#. to "confirm your email address and activate your registration."
+#: src/verify_email/templates/verify_email/email_verification_msg.html:60
+msgid ""
+"You received this mail because you attempted to make account on our website."
+" Please click on the link below to confirm the email and activate your "
+"account."
+msgstr ""
+"Você recebeu esse e-mail porque tentou criar um cadastro em nosso site. Por "
+"favor, clique no link abaixo para confirmar a sua conta de e-mail e ativar "
+"seu cadastro."
+
+#. Explanation: The English phrase "Please verify your e-mail" is a polite
+#. request to check the validity of an electronic mail address. In Portuguese,
+#. this translates directly as "Por favor, verifique seu e-mail," which
+#. maintains the same tone and formality. The French translation "Merci de
+#. vérfier ton email" can be translated into Portuguese as "Por favor,
+#. verifique seu e-mail" to preserve the politeness and request nature of the
+#. original English sentence.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:64
+msgid "Please verify your e-mail :"
+msgstr "Por favor, verifique seu e-mail."
+
+#. Explanation: The English phrase "You'll be joining us right after the
+#. verification!" conveys that the action of joining will occur immediately
+#. following the verification process. This meaning is preserved in Portuguese
+#. as "Você se juntará a nós exatamente após a verificação," where
+#. "exatamente" means "exactly" and "após" means "after." The translation
+#. maintains the same tone, emphasis, and nuance of the original English
+#. sentence.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:73
+msgid "You'll be joining us right after the verification !"
+msgstr "Você se juntará a nós exatamente após a verificação."
+
+#. Explanation: The English sentence is a polite greeting, acknowledging the
+#. recipient's participation in an event or group. In this case, it's a mail
+#. generated by a machine. The French translation accurately conveys this
+#. meaning while maintaining the tone and formality of the original text. The
+#. Portuguese translation follows suit, using "obrigado" for "thanks," "por se
+#. juntar" for "for joining," and "este e-mail foi gerado por uma máquina" to
+#. maintain the machine-generated aspect. The instruction to not respond is
+#. preserved as "não responda a este e-mail."
+#: src/verify_email/templates/verify_email/email_verification_msg.html:77
+msgid ""
+"Thanks for joining! <br> This mail machine generated. <br>Do not reply to "
+"this mail"
+msgstr ""
+"Obrigado por se juntar! <br> Este e-mail foi gerado por uma máquina. <br> "
+"Não responda a este e-mail."
+
+#. Explanation: The English phrase "Log In" translates to Portuguese as
+#. "Início de Sessão," which means "start of session." This is a common term
+#. used in login interfaces, indicating the beginning of an active user
+#. session.
+#: src/verify_email/templates/verify_email/email_verification_successful.html:28
+msgid "Log In"
+msgstr "Início de Sessão"
+
+#. Explanation: The English phrase "Link Expired!" conveys the same meaning as
+#. the French phrase "Lien expiré!". Both indicate that a link has reached its
+#. expiration date and is no longer functional. In Portuguese, this translates
+#. to "Link Expirou!", which maintains the same tone and nuance of urgency and
+#. finality. The use of exclamation marks in both English and French
+#. emphasizes the importance of the message.
+#: src/verify_email/templates/verify_email/link_expired.html:20
+msgid "Link Expired!"
+msgstr "Link Expirou!"
+
+#. Explanation: The English phrase "The link has lived its life :( Can not
+#. validate a dead link..." conveys that the link is no longer functional, as
+#. indicated by the emoticon ":(". In Portuguese, this meaning is preserved
+#. with "O link já viveu sua vida :(", where "já" means "has already" and
+#. "viveu" means "lived". The phrase "Can not validate a dead link..."
+#. translates to "Impossible de valider um lien mort...", where "impossível"
+#. means "impossible", "valide" means "validate", and "um lien mort" is the
+#. equivalent of "a dead link".
+#: src/verify_email/templates/verify_email/link_expired.html:26
+msgid "The link has lived its life :( Can not validate a dead link..."
+msgstr "O link já viveu sua vida :(\"."
+
+#. Explanation: The English phrase "Request Another one" translates to
+#. Portuguese as "Solicitar outro," which means "to ask for another." This
+#. translation maintains the meaning, tone, and nuance of the original English
+#. sentence. In this case, there are no placeholders or HTML markers to
+#. consider, so they remain in their original positions within the translated
+#. text.
+#: src/verify_email/templates/verify_email/link_expired.html:35
+msgid "Request Another one"
+msgstr "Solicitar outro"
+
+#. Explanation: The English phrase "Request New Email for Verification"
+#. translates to Portuguese as "Solicitar um novo email para verificação."
+#. This translation maintains the meaning of requesting a new email
+#. specifically for verification purposes. The French context, "Demander un
+#. nouveau mail de vérification," is consistent with this Portuguese
+#. translation, indicating that the action involves asking for a new email to
+#. be used in the verification process.
+#: src/verify_email/templates/verify_email/request_new_email.html:18
+msgid "Request New Email for Verification"
+msgstr "Solicitar um novo email para verificação"
+
+#. Explanation: The English phrase "Request New Email" translates to
+#. Portuguese as "Solicitar um novo e-mail". This means the same action of
+#. asking for a new email address, with "solicit" in Portuguese conveying the
+#. idea of making a request.
+#: src/verify_email/templates/verify_email/request_new_email.html:28
+msgid "Request New Email"
+msgstr "Solicitar um novo e-mail"
+
+#. Explanation: The English sentence indicates that the template usually needs
+#. to be modified by a specific app's template. This is accurately conveyed in
+#. Portuguese as "normalmente, este modelo precisa ser alterado pelo seu
+#. próprio template da aplicação," where "este modelo" translates to "this
+#. model," and "precisa ser alterado" maintains the meaning of needing
+#. modification. The phrase "pela sua própria template da aplicação" is a
+#. direct translation of "by your own app's template."
+#: src/verify_email/templates/verify_email/request_new_email.html:33
+msgid "Usually this template needs to be changed by your own app's template"
+msgstr ""
+"Normalmente, este modelo precisa ser alterado pelo seu próprio template da "
+"aplicação."
+
+#. Explanation: The English phrase "Method not allowed" indicates that an
+#. action or request is forbidden due to the method used. In this context,
+#. "method" refers to a specific way of performing an action or making a
+#. request. The French translation "Méthode interdite" directly conveys this
+#. meaning, translating to "forbidden method". Therefore, the Portuguese
+#. translation "Método não permitido" maintains the same nuance and preserves
+#. the original intent.
+#: src/verify_email/views.py:48
+msgid "Method not allowed"
+msgstr "Método não permitido"
+
+#. Explanation: The English phrase "Verification Successful!" translates
+#. directly to Portuguese as "Verificação bem-sucedida!". This direct
+#. translation maintains the positive affirmation of success in verification,
+#. preserving the tone and meaning from the original English sentence.
+#: src/verify_email/views.py:60
+msgid "Verification Successful!"
+msgstr "Verificação bem-sucedida!"
+
+#. Explanation: The English phrase "There is something wrong with this
+#. link..." conveys the idea that there's a problem or issue with a specific
+#. link. In French, "Quelque chose ne va pas avec ce lien..." translates to
+#. "Something is not right with this link...". This translation maintains the
+#. meaning and tone of the original English sentence while preserving the
+#. nuance of the French phrase. The Portuguese translation, "Há algo errado
+#. com este link...", also conveys a similar sense of an issue or problem
+#. associated with a particular link, ensuring consistency across languages.
+#: src/verify_email/views.py:74
+msgid "There is something wrong with this link..."
+msgstr "Há algo errado com este link..."
+
+#. Explanation: The English phrase "Verification Failed!" translates directly
+#. to Portuguese as "Verificação falhou!". This translation maintains the
+#. negative connotation and the action of verification failing, preserving the
+#. original meaning. The exclamation mark is also retained for emphasis in the
+#. Portuguese version.
+#: src/verify_email/views.py:75
+msgid "Verification Failed!"
+msgstr "Verificação falhou!"
+
+#. Explanation: The English sentence conveys that the link has served its
+#. purpose and is no longer functional, expressed as "The link has lived its
+#. life :(". This translates to Portuguese as "O link já passou por sua vida
+#. :(", which maintains the emotional tone of the original. The phrase
+#. "Request a new one!" in English is translated as "Solicite um novo!",
+#. preserving the imperative mood and the request for a replacement.
+#: src/verify_email/views.py:83
+msgid "The link has lived its life :( Request a new one!"
+msgstr "O link já passou por sua vida :(\". \"Solicite um novo!"
+
+#. Explanation: The English phrase "Expired!" is an exclamation indicating
+#. that something has passed its due date or time limit. In this case, the
+#. Portuguese translation "Expirado!" conveys the same meaning, using the same
+#. intonation and emphasis to express surprise or urgency.
+#: src/verify_email/views.py:84
+msgid "Expired!"
+msgstr "Expirado!"
+
+#. Explanation: The English phrase "This link was modified before
+#. verification" indicates that the link's content or structure underwent
+#. changes prior to being checked for accuracy. This meaning is preserved in
+#. Portuguese as "Este link foi alterado antes da verificação," where "este"
+#. translates to "this," "link" remains unchanged, "foi" means "was," and
+#. "alterado" conveys the action of modification. The French translation "Ce
+#. lien a été modifié avant vérification" is consistent with this Portuguese
+#. translation, as both phrases indicate that the link underwent changes prior
+#. to verification.
+#: src/verify_email/views.py:94
+msgid "This link was modified before verification."
+msgstr "Este link foi alterado antes da verificação."
+
+#. Explanation: The English sentence conveys that it is not feasible to
+#. request another verification link due to the presence of a faulty link.
+#. This meaning is preserved in Portuguese as "não é possível" (it is not
+#. possible), and "solicitar um segundo link de verificação" (to request
+#. another verification link) maintains the original structure. The French
+#. translation "Impossible de demander un autre lien de vérification avec un
+#. lien défectueux." is accurately translated into Portuguese as "não é
+#. possível solicitar um segundo link de verificação com um lien defeituoso."
+#: src/verify_email/views.py:95
+msgid "Cannot request another verification link with faulty link."
+msgstr ""
+"Não é possível solicitar um segundo link de verificação com um link "
+"defeituoso."
+
+#. Explanation: The English phrase "Faulty Link Detected!" translates to
+#. Portuguese as "Link defeituoso detectado!". In this context, "defeituoso"
+#. means "faulty", and the exclamation mark is preserved in Portuguese.
+#: src/verify_email/views.py:96
+msgid "Faulty Link Detected!"
+msgstr "Link defeituoso detectado!"
+
+#. Explanation: The English sentence "You have exceeded the maximum
+#. verification requests!" translates to Portuguese as "Você excedeu o limite
+#. máximo de solicitações de verificação!", which conveys the same meaning of
+#. exceeding a set limit for verification requests. The French translation "Tu
+#. as dépassé le nombre maximum de demandes de vérification ! Contacte
+#. l'administrateur." is accurately translated to Portuguese as "Você excedeu
+#. o limite máximo de solicitações de verificação! Entre em contato com o
+#. administrador." The use of "excedeu" in Portuguese maintains the same
+#. connotation of exceeding a limit, and "contacte" is translated to "entre em
+#. contato", both meaning "to contact".
+#: src/verify_email/views.py:104 src/verify_email/views.py:193
+msgid "You have exceeded the maximum verification requests! Contact admin."
+msgstr ""
+"Você excedeu o limite máximo de solicitações de verificação! Entre em "
+"contato com o administrador."
+
+#. Explanation: The English phrase "Maxed out!" is an exclamation indicating
+#. that something has reached its limit or capacity, often used in the context
+#. of credit cards. In Portuguese, this meaning is preserved by translating it
+#. as "Maximizado!", where "maximizado" means "maximized".
+#. ```
+#. "Maximizado!"
+#. ```
+#: src/verify_email/views.py:105 src/verify_email/views.py:194
+msgid "Maxed out!"
+msgstr "Maximizado!"
+
+#. Explanation: The English sentence conveys that the provided link is either
+#. invalid or has already been used. This meaning is preserved in Portuguese
+#. as "Este link não é válido ou já foi usado," which translates to "This link
+#. is not valid or has already been used." The phrase "we cannot verify using
+#. this link" is conveyed by "não podemos verificar usando este link," which
+#. means "we cannot verify with this link."
+#: src/verify_email/views.py:113 src/verify_email/views.py:202
+msgid ""
+"This link is invalid or been used already, we cannot verify using this link."
+msgstr ""
+"Este link não é válido ou já foi usado, não podemos verificar usando este "
+"link."
+
+#. Explanation: The English phrase "Invalid Link" translates directly to
+#. Portuguese as "Link inválido," which maintains the same meaning and tone.
+#. No ambiguity exists between the two languages, so no additional explanation
+#. is required.
+#: src/verify_email/views.py:114 src/verify_email/views.py:203
+msgid "Invalid Link"
+msgstr "Link inválido"
+
+#. Explanation: The English phrase "404 User not found" translates directly to
+#. Portuguese as "404 Usuário não encontrado," preserving the number and the
+#. meaning of the original sentence. In this case, there are no placeholders
+#. or HTML markers that need special attention, so they remain in their
+#. original positions.
+#: src/verify_email/views.py:118
+msgid "404 User not found"
+msgstr "404 Usuário não encontrado"
+
+#. Explanation: The English phrase "User is already active" indicates that the
+#. user has been previously engaged or logged in. In Portuguese, this
+#. translates to "O usuário já está ativo," where "O usuário" means "the user"
+#. and "está ativo" means "is already active."
+#. ```
+#. "O usuário já está ativo."
+#. ```
+#: src/verify_email/views.py:133
+msgid "User is already active"
+msgstr "O usuário já está ativo."
+
+#. Explanation: The English phrase "You have requested another verification
+#. email!" translates to Portuguese as "Você pediu outro e-mail de
+#. verificação!". In this translation, the subject ("you") remains consistent
+#. with the French context, which is "Tu" (French for "you"). The verb "have
+#. requested" in English corresponds to "pedir" in Portuguese and "demandé" in
+#. French. The phrase "another verification email" translates directly into
+#. Portuguese as "outro e-mail de verificação", preserving the meaning of
+#. sending a second confirmation email for security purposes.
+#: src/verify_email/views.py:142 src/verify_email/views.py:165
+msgid "You have requested another verification email!"
+msgstr "Você pediu outro e-mail de verificação!"
+
+#. Explanation: This Portuguese translation reflects the meaning of the French
+#. phrase, which indicates that a verification link was sent. The English
+#. sentence is straightforward and does not contain any ambiguity regarding
+#. the action performed (sending a link). Therefore, the Portuguese version "O
+#. seu link de verificação foi enviado" directly conveys this information
+#. while maintaining the original tone and nuance.
+#: src/verify_email/views.py:143 src/verify_email/views.py:166
+msgid "Your verification link has been sent"
+msgstr "O seu link de verificação foi enviado"
+
+#. Explanation: The English phrase "Email Sent!" translates to Portuguese as
+#. "E-mail enviado!". In this context, the exclamation mark indicates a
+#. positive action has been completed. The translation maintains this
+#. affirmative tone and nuance in Portuguese by using "enviado" instead of
+#. "enviada", which is the feminine form for "sent".
+#: src/verify_email/views.py:144 src/verify_email/views.py:167
+msgid "Email Sent!"
+msgstr "E-mail enviado!"
+
+#. Explanation: The English phrase "Something went wrong during sending email
+#. :" is translated into Portuguese as "Algo deu errado ao enviar o e-mail
+#. :(". This translation maintains the negative sentiment and the context of
+#. an issue occurring while sending an email. The colon and parentheses are
+#. preserved in their original positions, reflecting the structure of the
+#. English phrase.
+#: src/verify_email/views.py:171
+msgid "Something went wrong during sending email :("
+msgstr "Algo deu errado ao enviar o e-mail :-("
+
+#. Explanation: The English phrase "User not found associated with given
+#. email!" translates to Portuguese as "Usuário não encontrado associado às
+#. informações de e-mail fornecidas!". This translation maintains the meaning
+#. of the original sentence, indicating that a user cannot be located when
+#. linked to the provided email. The French context "Utilisateur non trouvé
+#. associé à l'email donné !" is consistent with this Portuguese translation,
+#. both conveying the idea that an associated user could not be identified
+#. based on the given email address.
+#: src/verify_email/views.py:175
+msgid "User not found associated with given email!"
+msgstr "Usuário não encontrado associado às informações de e-mail fornecidas!"
+
+#. Explanation: The English phrase "User Not Found" translates directly to
+#. Portuguese as "Usuário não encontrado," which maintains the same meaning
+#. and tone. No ambiguity exists in this translation, as both languages convey
+#. the exact message of a user not being located or found.
+#: src/verify_email/views.py:177
+msgid "User Not Found"
+msgstr "Usuário não encontrado"
+
+#. Explanation: The English phrase "Internal server error!" is a colloquial
+#. way to indicate that there has been an unexpected issue with the server,
+#. causing it to fail or behave erratically. This translation reflects this
+#. meaning in Portuguese as "Erro Interno do Servidor!". The exclamation mark
+#. remains unchanged, emphasizing the urgency of the message.
+#: src/verify_email/views.py:181 src/verify_email/views.py:185
+msgid "Internal server error!"
+msgstr "Erro Interno do Servidor!"
+
+#. Explanation: The English phrase "This user's account is already active"
+#. indicates that the user has an existing, functioning account. In
+#. Portuguese, this meaning is preserved by translating "user's account" as
+#. "cuenta do usuário," and "already active" as "já tem sua conta ativa."
+#. ```
+#. "Este usuário já tem sua conta ativa."
+#. ```
+#: src/verify_email/views.py:211
+msgid "This user's account is already active"
+msgstr "Este usuário já tem sua conta ativa."
+
+#. Explanation: The English phrase "Already Verified!" translates to
+#. Portuguese as "Já Verificado!". This translation maintains the affirmative
+#. tone and indicates that something has been confirmed or checked. The
+#. exclamation mark is also preserved, reflecting the emphasis in the original
+#. English sentence.
+#: src/verify_email/views.py:212
+msgid "Already Verified!"
+msgstr "Já Verificado!"

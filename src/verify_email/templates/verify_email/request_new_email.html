@@ -1,5 +1,5 @@
 {% extends "email_index.html" %}
-
+{%load i18n %}
 {%block content%}
 
 <div class="container" 
@@ -15,7 +15,7 @@
     
     ">
     <div class="container mt-5">
-        <h2 style="margin-bottom: 20px;">Request New Email for Verification</h2>
+        <h2 style="margin-bottom: 20px;">{%trans "Request New Email for Verification"%}</h2>
         <hr>
         <form method='POST' >
             {% csrf_token %}
@@ -25,12 +25,12 @@
             </fieldset>
     
             <div style="margin-top: 50px;">
-                <button class="btn btn-outline-info" type="submit">Request New Email</button>
+                <button class="btn btn-outline-info" type="submit">{%trans "Request New Email"%}</button>
             </div>
         </form>
     
         <div class="border-top pt-3 mt-3">
-            <small>Usually this template needs to be changed by your own app's template</small>
+            <small>{%trans "Usually this template needs to be changed by your own app's template"%}</small>
         </div>
     </div>
 </div>

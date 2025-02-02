@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.utils.translation import gettext as _
 
 
 class GetFieldFromSettings:
@@ -27,12 +28,12 @@ class GetFieldFromSettings:
 
             'subject': (
                 "SUBJECT",
-                "Email Verification Mail"
+                _("Email Verification Mail")
             ),
 
             'email_field_name': (
                 "EMAIL_FIELD_NAME",
-                "email",
+                _("email"),
             ),
 
             'html_message_template': (
@@ -57,8 +58,8 @@ class GetFieldFromSettings:
 
             'verification_success_msg': (
                 'VERIFICATION_SUCCESS_MSG',
-                "Your Email is verified successfully and account has been activated. "
-                "You can login with the credentials now..."
+                _("Your Email is verified successfully and account has been activated. "
+                  "You can login with the credentials now...")
             ),
 
             'verification_failed_template': (
@@ -73,7 +74,7 @@ class GetFieldFromSettings:
 
             'verification_failed_msg': (
                 'VERIFICATION_FAILED_MSG',
-                "There is something wrong with this link, can't verify the user..."
+                _("There is something wrong with this link, can't verify the user...")
             ),
             'request_new_email_template': (
                 'REQUEST_NEW_EMAIL_TEMPLATE',

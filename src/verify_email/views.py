@@ -8,6 +8,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.core.signing import SignatureExpired, BadSignature
+from django.utils.translation import gettext as _
 
 from .app_configurations import GetFieldFromSettings
 from .confirm import verify_user
@@ -44,7 +45,7 @@ def verify_user_and_activate(request, useremail, usertoken):
     verify the user's email and token and redirect'em accordingly.
     """
     if request.method != 'GET':
-        raise ValidationError('Method not allowed')
+        raise ValidationError(_('Method not allowed'))
     try:
         verified = verify_user(useremail, usertoken)
         if verified is True:
@@ -56,7 +57,7 @@ def verify_user_and_activate(request, useremail, usertoken):
                 template_name=success_template,
                 context={
                     'msg': success_msg,
-                    'status': 'Verification Successful!',
+                    'status': _('Verification Successful!'),
                     'link': reverse(login_page)
                 }
             )
@@ -70,8 +71,8 @@ def verify_user_and_activate(request, useremail, usertoken):
             template_name=failed_template,
             context={
                 'msg': failed_msg,
-                'minor_msg': 'There is something wrong with this link...',
-                'status': 'Verification Failed!',
+                'minor_msg': _('There is something wrong with this link...'),
+                'status': _('Verification Failed!'),
             }
         )
     except SignatureExpired:
@@ -79,8 +80,8 @@ def verify_user_and_activate(request, useremail, usertoken):
             request,
             template_name=link_expired_template,
             context={
-                'msg': 'The link has lived its life :( Request a new one!',
-                'status': 'Expired!',
+                'msg': _('The link has lived its life :( Request a new one!'),
+                'status': _('Expired!'),
                 'encoded_email': useremail,
                 'encoded_token': usertoken
             }
@@ -90,9 +91,9 @@ def verify_user_and_activate(request, useremail, usertoken):
             request,
             template_name=failed_template,
             context={
-                'msg': 'This link was modified before verification.',
-                'minor_msg': 'Cannot request another verification link with faulty link.',
-                'status': 'Faulty Link Detected!',
+                'msg': _('This link was modified before verification.'),
+                'minor_msg': _('Cannot request another verification link with faulty link.'),
+                'status': _('Faulty Link Detected!'),
             }
         )
     except MaxRetriesExceeded:
@@ -100,8 +101,8 @@ def verify_user_and_activate(request, useremail, usertoken):
             request,
             template_name=failed_template,
             context={
-                'msg': 'You have exceeded the maximum verification requests! Contact admin.',
-                'status': 'Maxed out!',
+                'msg': _('You have exceeded the maximum verification requests! Contact admin.'),
+                'status': _('Maxed out!'),
             }
         )
     except InvalidToken:
@@ -109,12 +110,12 @@ def verify_user_and_activate(request, useremail, usertoken):
             request,
             template_name=failed_template,
             context={
-                'msg': 'This link is invalid or been used already, we cannot verify using this link.',
-                'status': 'Invalid Link',
+                'msg': _('This link is invalid or been used already, we cannot verify using this link.'),
+                'status': _('Invalid Link'),
             }
         )
     except UserNotFound:
-        raise Http404("404 User not found")
+        raise Http404(_("404 User not found"))
 
 
 def request_new_link(request, useremail=None, usertoken=None):
@@ -129,7 +130,7 @@ def request_new_link(request, useremail=None, usertoken=None):
 
                     inactive_user = get_user_model().objects.get(email=email)
                     if inactive_user.is_active:
-                        raise UserAlreadyActive('User is already active')
+                        raise UserAlreadyActive(_('User is already active'))
                     else:
                         # resend email
                         status = resend_verification_email(request, email, user=inactive_user, encoded=False)
@@ -138,9 +139,9 @@ def request_new_link(request, useremail=None, usertoken=None):
                                 request,
                                 template_name=new_email_sent_template,
                                 context={
-                                    'msg': "You have requested another verification email!",
-                                    'minor_msg': 'Your verification link has been sent',
-                                    'status': 'Email Sent!',
+                                    'msg': _("You have requested another verification email!"),
+                                    'minor_msg': _('Your verification link has been sent'),
+                                    'status': _('Email Sent!'),
                                 }
                             )
                         else:
@@ -161,27 +162,27 @@ def request_new_link(request, useremail=None, usertoken=None):
                 request,
                 template_name=new_email_sent_template,
                 context={
-                    'msg': "You have requested another verification email!",
-                    'minor_msg': 'Your verification link has been sent',
-                    'status': 'Email Sent!',
+                    'msg': _("You have requested another verification email!"),
+                    'minor_msg': _('Your verification link has been sent'),
+                    'status': _('Email Sent!'),
                 }
             )
         else:
-            messages.info(request, 'Something went wrong during sending email :(')
+            messages.info(request, _('Something went wrong during sending email :('))
             logger.error('something went wrong during sending email')
 
     except ObjectDoesNotExist as error:
-        messages.warning(request, 'User not found associated with given email!')
+        messages.warning(request, _('User not found associated with given email!'))
         logger.error(f'[ERROR]: User not found. exception: {error}')
-        return HttpResponse(b"User Not Found", status=404)
+        return HttpResponse(_(b"User Not Found"), status=404)
 
     except MultipleObjectsReturned as error:
         logger.error(f'[ERROR]: Multiple users found. exception: {error}')
-        return HttpResponse(b"Internal server error!", status=500)
+        return HttpResponse(_(b"Internal server error!"), status=500)
 
     except KeyError as error:
         logger.error(f'[ERROR]: Key error for email in your form: {error}')
-        return HttpResponse(b"Internal server error!", status=500)
+        return HttpResponse(_(b"Internal server error!"), status=500)
 
     except MaxRetriesExceeded as error:
         logger.error(f'[ERROR]: Maximum retries for link has been reached. exception: {error}')
@@ -189,8 +190,8 @@ def request_new_link(request, useremail=None, usertoken=None):
             request,
             template_name=failed_template,
             context={
-                'msg': 'You have exceeded the maximum verification requests! Contact admin.',
-                'status': 'Maxed out!',
+                'msg': _('You have exceeded the maximum verification requests! Contact admin.'),
+                'status': _('Maxed out!'),
             }
         )
     except InvalidToken:
@@ -198,8 +199,8 @@ def request_new_link(request, useremail=None, usertoken=None):
             request,
             template_name=failed_template,
             context={
-                'msg': 'This link is invalid or been used already, we cannot verify using this link.',
-                'status': 'Invalid Link',
+                'msg': _('This link is invalid or been used already, we cannot verify using this link.'),
+                'status': _('Invalid Link'),
             }
         )
     except UserAlreadyActive:
@@ -207,7 +208,7 @@ def request_new_link(request, useremail=None, usertoken=None):
             request,
             template_name=failed_template,
             context={
-                'msg': "This user's account is already active",
-                'status': 'Already Verified!',
+                'msg': _("This user's account is already active"),
+                'status': _('Already Verified!'),
             }
         )

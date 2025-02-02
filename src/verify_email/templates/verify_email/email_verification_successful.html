@@ -1,5 +1,5 @@
 {% extends "email_index.html" %}
-
+{%load i18n %}
 {%block content%}
 
 
@@ -25,7 +25,7 @@
     </div>
     <div class="row justify-content-center">
         <a href="{{link}}" class="btn btn-primary" style="align-items: center; border-radius: 20px; margin-left: 10px; margin-right: 10px;">
-            Log In 
+            {%trans "Log In"%} 
         </a>
     </div>
 

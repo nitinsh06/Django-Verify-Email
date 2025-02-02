@@ -1,0 +1,506 @@
+# German Translations for NO NAME FOUND app.
+# Copyright (C) 2025 Olivier LEVILLAIN
+# This file is distributed under the same license as the application.
+# This file was generated from ../Django-Verify-Email/src/verify_email/locale/fr/LC_MESSAGES/django.po by [Auto-po-lyglot](https://github.com/leolivier/auto-po-lyglot)
+# using the granite3.1-dense:2b model. Depending on the model, it may contain some errors and should be reviewed
+# by a human translator. Also depending on the model, each translation can be preceded by an explanation provided
+# by the model.
+# Olivier LEVILLAIN <OWNER EMAIL>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.1.0\n"
+"Report-Msgid-Bugs-To: olivier@levillain.eu\n"
+"POT-Creation-Date: 2025-02-02 15:02+0100\n"
+"PO-Revision-Date: 2025-02-02 16:20+00:00\n"
+"\n"
+"Last-Translator: Auto-po-lyglot using granite3.1-dense:2b (https://github.com/leolivier/auto-po-lyglot)\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Explanation: The English phrase "Email Verification Mail" translates to
+#. German as "E-Mail-Bestätigungs-Nachricht". This translation maintains the
+#. original meaning, which refers to an email sent for verifying a recipient's
+#. email address.
+#: src/verify_email/app_configurations.py:31
+msgid "Email Verification Mail"
+msgstr "E-Mail-Bestätigungs-Nachricht"
+
+#. Explanation: The English word "email" is a noun referring to an electronic
+#. message sent via the internet, typically for communication between people
+#. using different systems. In German, this term translates directly as
+#. "E-Mail," preserving its meaning and maintaining consistency with the
+#. French translation.
+#. ```
+#. "E-Mail"
+#. ```
+#: src/verify_email/app_configurations.py:36
+msgid "email"
+msgstr "E-Mail"
+
+#. Explanation: The German translation maintains the meaning, tone, and nuance
+#. of the original English sentence while preserving proper grammar, spelling,
+#. and punctuation. It conveys that the user's email has been successfully
+#. verified and their account is now active, allowing them to log in using
+#. their provided credentials.
+#: src/verify_email/app_configurations.py:61
+msgid ""
+"Your Email is verified successfully and account has been activated. You can "
+"login with the credentials now..."
+msgstr ""
+"Dein E-Mail-Adresse wurde erfolgreich verifiziert und dein Konto wurde "
+"aktiviert. Du kannst nun mit den Zugangsdaten einloggen..."
+
+#. Explanation: The German translation maintains the meaning of the French
+#. sentence, which indicates that there is a problem with the link and
+#. verification of the user cannot be done. The phrase "et quelque chose ne va
+#. pas" translates to "there is something wrong," and "ne peut pas vérifier
+#. l'utilisateur" translates to "cannot verify the user." These translations
+#. are preserved in the German version, "Es gibt etwas Falsch mit diesem Link,
+#. die Authentifizierung des Benutzers kann nicht bestätigt werden."
+#: src/verify_email/app_configurations.py:77
+msgid "There is something wrong with this link, can't verify the user..."
+msgstr ""
+"Es gibt etwas Falsch mit diesem Link, die Authentifizierung des Benutzers "
+"kann nicht bestätigt werden."
+
+#. Explanation: The English phrase "Verify Email address" translates to German
+#. as "Verifiziere die E-Mail-Adresse". This German translation maintains the
+#. meaning of the original sentence, which is to confirm or check an email
+#. address. The use of "die" in this context refers to a specific, previously
+#. mentioned email address, and "E-Mail-Adresse" is the German term for "email
+#. address".
+#: src/verify_email/templates/verify_email/email_verification_msg.html:10
+msgid "Verify Email address"
+msgstr "Verifiziere die E-Mail-Adresse"
+
+#. Explanation: The English phrase "Account Activation" translates directly to
+#. German as "Kontoaktivierung". This is a noun phrase that indicates the
+#. action of enabling or turning on an account. In this context, it refers to
+#. the process of making an account functional and ready for use.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:52
+msgid "Account Activation"
+msgstr "Kontoaktivierung"
+
+#. Explanation: The English phrase "E-mail Confirmation" translates directly
+#. to German as "E-Mail-Bestätigung". This is a noun phrase in German, where
+#. "E-Mail" refers to the electronic mail and "Bestätigung" means
+#. confirmation. The use of hyphens in the English translation indicates that
+#. "E-mail" is a compound word, which is preserved in the German translation
+#. as well.
+#. ```
+#. "E-Mail-Bestätigung"
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_msg.html:56
+msgid "E-mail Confirmation"
+msgstr "E-Mail-Bestätigung"
+
+#. Explanation: The English phrase "Greetings!" is a polite way to address
+#. someone, often used in formal or written contexts. In German, this
+#. translates directly to "Grüße!". The exclamation mark remains unchanged as
+#. it indicates enthusiasm and politeness.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:59
+msgid "Greetings!"
+msgstr "Grüße!"
+
+#. Explanation: The German translation maintains the original meaning and tone
+#. of the French sentence while preserving grammatical correctness and proper
+#. punctuation. It uses "Du" (you) as a formal address, which is appropriate
+#. for a professional context. The phrase "hast dieses Mail erhalten"
+#. translates to "received this mail," and "weil du versucht hast, ein Konto
+#. auf unserem Webportal zu erstellen" maintains the idea of attempting to
+#. create an account on the website. The instruction to click on the link for
+#. confirmation and activation is accurately conveyed in German as "klicke auf
+#. den Link unten."
+#: src/verify_email/templates/verify_email/email_verification_msg.html:60
+msgid ""
+"You received this mail because you attempted to make account on our website."
+" Please click on the link below to confirm the email and activate your "
+"account."
+msgstr ""
+"Du hast dieses Mail erhalten, weil du versucht hast, ein Konto auf unserem "
+"Webportal zu erstellen. Bitte klicke auf den Link unten, um die E-Mail zu "
+"bestätigen und dein Konto zu aktivieren."
+
+#. Explanation: The English phrase "Please verify your e-mail" is a polite
+#. request to confirm the validity of an electronic mail address. In German,
+#. this translates directly as "Bitte überprüfen Sie Ihr E-Mail," which
+#. maintains the same tone and formality. The French translation "Merci de
+#. vérfier ton email" can be interpreted as a more casual way of expressing
+#. the same request in French, but since we are focusing on preserving the
+#. English meaning and tone, the German translation is chosen for consistency.
+#. ```
+#. "Bitte überprüfen Sie Ihr E-Mail."
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_msg.html:64
+msgid "Please verify your e-mail :"
+msgstr "Bitte überprüfen Sie Ihr E-Mail."
+
+#. Explanation: The English phrase "You'll be joining us right after the
+#. verification!" conveys that the action of joining will occur immediately
+#. following a verification process. This is accurately translated into German
+#. as "Du wirst uns nach der Überprüfung rejoinen," which means "You will join
+#. us just after the verification."
+#. The translation preserves the meaning, tone, and nuance of the original
+#. English sentence while adhering to proper grammar, spelling, and
+#. punctuation in German. The placeholder "%" is not translated as it does not
+#. carry any specific meaning or context within this sentence.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:73
+msgid "You'll be joining us right after the verification !"
+msgstr "Du wirst uns nach der Überprüfung rejoinen."
+
+#. Explanation: The English sentence is a polite greeting for joining, with
+#. the phrase "This mail machine generated" indicating that the email was
+#. automatically created by a system. The French translation maintains this
+#. meaning, and the German translation conveys the same sentiment while
+#. preserving the original structure and placeholders. The German version uses
+#. "Danke für die Teilnahme!" to express gratitude for joining, "diese E-Mail
+#. wurde von einer Maschine generiert" to indicate that it was created by a
+#. machine, and "Bitte nicht auf diese E-Mail antworten" to warn against
+#. responding. The HTML markers "<br>" are preserved in the German translation
+#. as well.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:77
+msgid ""
+"Thanks for joining! <br> This mail machine generated. <br>Do not reply to "
+"this mail"
+msgstr ""
+"Danke für die Teilnahme! <br> Diese E-Mail wurde von einer Maschine "
+"generiert. <br> Bitte nicht auf diese E-Mail antworten."
+
+#. Explanation: The English phrase "Log In" translates to German as
+#. "Anmelden," which means the same - to log in or sign in. Both phrases
+#. indicate the action of entering a username and password to access an
+#. account or system.
+#. ```
+#. "Anmelden"
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_successful.html:28
+msgid "Log In"
+msgstr "Anmelden"
+
+#. Explanation: The English phrase "Link Expired!" translates to German as
+#. "Verbindung abgelaufen!". This translation maintains the same tone and
+#. meaning, indicating that a link has expired. The use of "Verbindung"
+#. (connection) in German reflects the colloquial expression "link", while
+#. "abgelaufen" (expired) conveys the same idea of an expired connection or
+#. link.
+#: src/verify_email/templates/verify_email/link_expired.html:20
+msgid "Link Expired!"
+msgstr "Verbindung abgelaufen!"
+
+#. Explanation: The English sentence expresses that a link has fulfilled its
+#. purpose and cannot be validated anymore. This sentiment is preserved in the
+#. German translation, where "Der Link hat seine Lebensdauer erreicht" conveys
+#. that the link has lived out its intended use. The phrase "Es ist nicht
+#. möglich, einen toten Link zu validieren..." translates to "It is not
+#. possible to validate a dead link," maintaining the same meaning and tone as
+#. the original English sentence.
+#: src/verify_email/templates/verify_email/link_expired.html:26
+msgid "The link has lived its life :( Can not validate a dead link..."
+msgstr ""
+"Der Link hat seine Lebensdauer erreicht :(\", \"Es ist nicht möglich, einen "
+"toten Link zu validieren..."
+
+#. Explanation: The English phrase "Request Another one" translates to German
+#. as "Andere anfordern," which means "to request another." This translation
+#. maintains the meaning, tone, and nuance of the original English sentence.
+#. The word order in German follows a Subject-Verb-Object (SVO) pattern,
+#. similar to English, but with the verb coming after the object. In this
+#. case, "Andere" is the subject (requesters), "anfordern" is the verb (to
+#. request), and "einen" is the object (another item).
+#: src/verify_email/templates/verify_email/link_expired.html:35
+msgid "Request Another one"
+msgstr "Andere anfordern"
+
+#. Explanation: The English phrase "Request New Email for Verification"
+#. translates to German as "Anforderung eines neuen E-Mail-Adressen für die
+#. Bestätigung". This translation maintains the meaning of requesting a new
+#. email address specifically for verification purposes.
+#: src/verify_email/templates/verify_email/request_new_email.html:18
+msgid "Request New Email for Verification"
+msgstr "Anforderung eines neuen E-Mail-Adressen für die Bestätigung"
+
+#. Explanation: The English phrase "Request New Email" translates to German as
+#. "Anforderung eines neuen E-Mail-Accounts". This reflects the action of
+#. requesting a new email address, which is more accurately conveyed by using
+#. the term "E-Mail-Account" in German.
+#: src/verify_email/templates/verify_email/request_new_email.html:28
+msgid "Request New Email"
+msgstr "Anforderung eines neuen E-Mail-Accounts"
+
+#. Explanation: The English sentence indicates that the template usually needs
+#. to be modified by a user's own app. This is translated into German as
+#. "Normalerweise benötigt dieser Template Ihre eigene Anwendungstemplate,"
+#. which conveys the same meaning in German. The word order and structure are
+#. maintained for clarity, preserving the original sentence's tone and nuance.
+#: src/verify_email/templates/verify_email/request_new_email.html:33
+msgid "Usually this template needs to be changed by your own app's template"
+msgstr ""
+"Normalerweise benötigt dieser Template Ihre eigene Anwendungstemplate."
+
+#. Explanation: The English phrase "Method not allowed" indicates that the
+#. action or request is forbidden, which translates to German as "Methode
+#. nicht erlaubt". This maintains the meaning and tone of the original
+#. sentence.
+#. ```
+#. "Methode nicht erlaubt"
+#. ```
+#: src/verify_email/views.py:48
+msgid "Method not allowed"
+msgstr "Methode nicht erlaubt"
+
+#. Explanation: The English phrase "Verification Successful!" translates to
+#. German as "Verifizierung erfolgreich!". This translation maintains the
+#. positive affirmation of success in verification, preserving the tone and
+#. meaning from the original English sentence.
+#: src/verify_email/views.py:60
+msgid "Verification Successful!"
+msgstr "Verifizierung erfolgreich!"
+
+#. Explanation: The English phrase "There is something wrong with this
+#. link..." conveys the idea that there's a problem or anomaly with the
+#. provided link. The German translation "Es scheint, dass etwas mit diesem
+#. Link nicht stimmt" maintains this meaning by indicating an issue or
+#. discrepancy with the link in question.
+#. ```
+#. "Es scheint, dass etwas mit diesem Link nicht stimmt."
+#. ```
+#: src/verify_email/views.py:74
+msgid "There is something wrong with this link..."
+msgstr "Es scheint, dass etwas mit diesem Link nicht stimmt."
+
+#. Explanation: The English phrase "Verification Failed!" translates directly
+#. to German as "Verifizierung fehlgeschlagen!". This is a straightforward
+#. translation, maintaining the same tone and meaning. The exclamation mark in
+#. English indicates an error or failure, which is also conveyed by the
+#. exclamation point in German.
+#: src/verify_email/views.py:75
+msgid "Verification Failed!"
+msgstr "Verifizierung fehlgeschlagen!"
+
+#. Explanation: The English sentence expresses that the link has served its
+#. purpose and is no longer functional. This sentiment is preserved in German
+#. as "Der Link hat seine Lebensdauer erfüllt :(". The phrase "Request a new
+#. one!" translates to "Anfordern Sie einen neuen!", which maintains the same
+#. tone of urgency and request for a replacement link.
+#: src/verify_email/views.py:83
+msgid "The link has lived its life :( Request a new one!"
+msgstr ""
+"Der Link hat seine Lebensdauer erfüllt :(\", Bitte einen neuen anfordern!"
+
+#. Explanation: The English phrase "Expired!" is an exclamation indicating
+#. that something has passed its expiration date, which translates to German
+#. as "Abgelaufen!". This maintains the same tone and nuance of urgency.
+#: src/verify_email/views.py:84
+msgid "Expired!"
+msgstr "Abgelaufen!"
+
+#. Explanation: The English phrase "This link was modified before
+#. verification" indicates that the link's content or properties were altered
+#. prior to an official check. In German, this meaning is preserved as "Diese
+#. Verknüpfung wurde vor der Überprüfung geändert," where "Verknüpfung" refers
+#. to a connection or link, and "vor der Überprüfung" means "before
+#. verification." The word order in German follows the Subject-Verb-Object
+#. (SVO) pattern, similar to English.
+#: src/verify_email/views.py:94
+msgid "This link was modified before verification."
+msgstr "Diese Verknüpfung wurde vor der Überprüfung geändert."
+
+#. Explanation: The English sentence conveys that it is impossible to request
+#. another verification link due to a faulty link. This meaning is preserved
+#. in the German translation, where "Es ist nicht möglich" translates to "It
+#. is not possible," and "zu fordern" corresponds to "to demand." The phrase
+#. "mit einem defekten Link" in English is translated as "mit einem defekten
+#. Link" in German.
+#: src/verify_email/views.py:95
+msgid "Cannot request another verification link with faulty link."
+msgstr ""
+"Es ist nicht möglich, einen anderen Verifizierungslink mit einem defekten "
+"Link zu fordern."
+
+#. Explanation: The English phrase "Faulty Link Detected!" translates to
+#. German as "Fehlerhafter Link erkannt!". This translation maintains the
+#. meaning of the original sentence, which indicates that a faulty link has
+#. been detected. The use of "Fehlerhafter" in German conveys the idea of
+#. something being flawed or broken, similar to "faulty" in English.
+#: src/verify_email/views.py:96
+msgid "Faulty Link Detected!"
+msgstr "Fehlerhafter Link erkannt!"
+
+#. Explanation: This German translation maintains the meaning, tone, and
+#. nuance of the original English sentence. The phrase "You have exceeded the
+#. maximum verification requests!" is translated as "Du hast die maximale
+#. Anzahl an Verifizierungsanfragen überschritten!", which conveys the same
+#. idea that the user has gone beyond the allowed number of verification
+#. requests. The instruction to "Contact admin." is translated as "Wende dich
+#. an den Administrator.", preserving the command to reach out to the
+#. administrator for assistance.
+#: src/verify_email/views.py:104 src/verify_email/views.py:193
+msgid "You have exceeded the maximum verification requests! Contact admin."
+msgstr ""
+"Du hast die maximale Anzahl an Verifizierungsanfragen überschritten! Wende "
+"dich an den Administrator."
+
+#. Explanation: The English phrase "maxed out" means to have reached the limit
+#. or capacity of something, often in terms of spending money. In this
+#. context, it implies a state of having no more resources available. The
+#. French translation "Au maximum !" also conveys this idea, indicating that
+#. one has reached the highest point or limit. Therefore, the German
+#. translation "Maximales erreicht!" maintains this meaning while using
+#. appropriate German terminology for reaching the maximum capacity.
+#: src/verify_email/views.py:105 src/verify_email/views.py:194
+msgid "Maxed out!"
+msgstr "Maximales erreicht!"
+
+#. Explanation: The German translation maintains the meaning of the French
+#. sentence that the link is either invalid or has already been used. It
+#. conveys that verification cannot be performed using this specific link due
+#. to its status.
+#: src/verify_email/views.py:113 src/verify_email/views.py:202
+msgid ""
+"This link is invalid or been used already, we cannot verify using this link."
+msgstr ""
+"Diese Verbindung ist ungültig oder bereits verwendet worden, wir können sie "
+"nicht überprüfen."
+
+#. Explanation: The English phrase "Invalid Link" translates directly to
+#. German as "Ungültiger Link". This term accurately conveys the meaning of an
+#. invalid link, without any additional nuance. The French translation "Lien
+#. invalide" also means "invalid link", so no change is needed for consistency
+#. with the provided context.
+#: src/verify_email/views.py:114 src/verify_email/views.py:203
+msgid "Invalid Link"
+msgstr "Ungültiger Link"
+
+#. Explanation: The English phrase "404 User not found" translates to German
+#. as "404 Benutzer nicht gefunden". In this context, "User" refers to a user
+#. in the system, and "not found" indicates that the requested user could not
+#. be located. This translation maintains the meaning, tone, and nuance of the
+#. original English sentence while adhering to proper grammar, spelling, and
+#. punctuation in German.
+#: src/verify_email/views.py:118
+msgid "404 User not found"
+msgstr "404 Benutzer nicht gefunden"
+
+#. Explanation: The English phrase "User is already active" indicates that the
+#. user has been previously engaged or logged in. In German, this translates
+#. to "Benutzer ist bereits aktiv," which conveys a similar meaning of prior
+#. user activity. The word order and verb tense are preserved for consistency
+#. with the French translation.
+#. HTML placeholders: None
+#. ```
+#. English sentence: "<h1>User is already active</h1>"
+#. French translation: "<h1>Utilisateur déjà actif</h1>"
+#. ```
+#. German translation:
+#. ```
+#. "<h1>Benutzer ist bereits aktiv</h1>"
+#. ```
+#: src/verify_email/views.py:133
+msgid "User is already active"
+msgstr "Benutzer ist bereits aktiv"
+
+#. Explanation: The English phrase "You have requested another verification
+#. email!" translates to German as "Du hast eine weitere Überprüfungsmail
+#. angefordert!". This translation maintains the subject ("you") and action
+#. ("requested"), while preserving the meaning of requesting an additional
+#. verification email. The French translation "Tu as demandé un autre courriel
+#. de vérification !" is used to ensure consistency with the context,
+#. indicating that the person has asked for a second verification email.
+#: src/verify_email/views.py:142 src/verify_email/views.py:165
+msgid "You have requested another verification email!"
+msgstr "Du hast eine weitere Überprüfungsmail angefordert!"
+
+#. Explanation: This German translation maintains the meaning, tone, and
+#. nuance of the original English sentence. The phrase "Your verification link
+#. has been sent" is translated as "Dein Verifizierungslink wurde gesendet,"
+#. where "Dein" means "your," "Verifizierungslink" translates to "verification
+#. link," and "wurde gesendet" conveys the action of sending. The use of
+#. "Dein" in German, similar to its English counterpart, ensures consistency
+#. with the French translation.
+#: src/verify_email/views.py:143 src/verify_email/views.py:166
+msgid "Your verification link has been sent"
+msgstr "Dein Verifizierungslink wurde gesendet."
+
+#. Explanation: The English phrase "Email Sent!" translates to German as
+#. "E-Mail gesendet!". This translation maintains the meaning, tone, and
+#. nuance of the original English sentence. In this context, "gesendet" is a
+#. past participle form of the verb "senden", which means "to send". The
+#. exclamation mark at the end of the French phrase is preserved in the German
+#. translation as well, indicating excitement or confirmation that an email
+#. has been sent.
+#: src/verify_email/views.py:144 src/verify_email/views.py:167
+msgid "Email Sent!"
+msgstr "E-Mail gesendet!"
+
+#. Explanation: The English phrase "Something went wrong during sending email
+#. :" is translated to German as "Etwas ist schiefgegangen beim Versenden des
+#. E-Mails :(". This translation maintains the negative sentiment and the
+#. context of an issue occurring while sending an email. The colon and
+#. parentheses are preserved in their original positions, reflecting the
+#. English structure.
+#: src/verify_email/views.py:171
+msgid "Something went wrong during sending email :("
+msgstr "Etwas ist schiefgegangen beim Versenden des E-Mails :-)"
+
+#. Explanation: The English sentence conveys that the system cannot locate a
+#. user associated with a specific email. The German translation "Benutzer
+#. nicht gefunden, der mit dem angegebenen E-Mail verknüpft ist!" maintains
+#. this meaning while preserving the tone and nuance of the original text. The
+#. use of "nicht gefunden" (not found) in German mirrors the English phrase,
+#. and "verknüpft" (associated) conveys a similar sense to the French
+#. "associé".
+#: src/verify_email/views.py:175
+msgid "User not found associated with given email!"
+msgstr ""
+"Benutzer nicht gefunden, der mit dem angegebenen E-Mail verknüpft ist!"
+
+#. Explanation: The English phrase "User Not Found" translates directly to
+#. German as "Benutzer nicht gefunden". This literal translation maintains the
+#. meaning and tone of the original English sentence, indicating that a user
+#. could not be located. The French translation "Utilisateur non trouvé" is
+#. also accurately translated into German as "Benutzer nicht gefunden",
+#. preserving its meaning and nuance.
+#: src/verify_email/views.py:177
+msgid "User Not Found"
+msgstr "Benutzer nicht gefunden"
+
+#. Explanation: The English phrase "Internal server error!" is a direct
+#. translation of the French phrase "Erreur de serveur interne !". Both
+#. phrases convey the same meaning, indicating an internal issue with the
+#. server. In German, this translates to "Interner Serverfehler!", which
+#. maintains the original tone and nuance. The exclamation mark is preserved
+#. in both translations for emphasis.
+#: src/verify_email/views.py:181 src/verify_email/views.py:185
+msgid "Internal server error!"
+msgstr "Interner Serverfehler!"
+
+#. Explanation: The English phrase "This user's account is already active"
+#. indicates that the account of a specific user is currently operational. In
+#. German, this translates to "Dieses Benutzer-Konto ist bereits aktiv," where
+#. "dieses Benutzer-Konto" refers to the account of a particular user and "ist
+#. bereits aktiv" means "is already active." The use of "dieses" as a definite
+#. article in German maintains the specificity of the English phrase.
+#. ```
+#. "Dieses Benutzer-Konto ist bereits aktiv."
+#. ```
+#: src/verify_email/views.py:211
+msgid "This user's account is already active"
+msgstr "Dieses Benutzer-Konto ist bereits aktiv."
+
+#. Explanation: The English phrase "Already Verified!" conveys the same
+#. meaning as the French "Déjà vérifié!". Both indicate that something has
+#. been checked or confirmed. In German, this translates to "Schon
+#. verifiziert!", which maintains the affirmative tone and the idea of
+#. confirmation.
+#. ```
+#. "Schon verifiziert!"
+#. ```
+#: src/verify_email/views.py:212
+msgid "Already Verified!"
+msgstr "Schon verifiziert!"

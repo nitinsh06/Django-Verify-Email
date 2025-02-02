@@ -1,3 +1,4 @@
+{%load i18n%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     
-    <title>Verify Email address</title>
+    <title>{%trans "Verify Email address"%}</title>
 
     <style>
         .format-font {
@@ -48,20 +49,19 @@
 
         <div style="background-color: rgb(110, 3, 211); border-radius: 15px;">
             <h1 class="format-font" style="text-align: center; padding: 2px; color:white;">
-                Account Activation
+                {%trans "Account Activation"%}
             </h1>
         </div>
 
-        <h2 class="format-font" style="text-align: center;">E-mail Confirmation</h2> <hr style="background-color:  rgb(110, 3, 211); width:100px">
+        <h2 class="format-font" style="text-align: center;">{%trans "E-mail Confirmation"%}</h2> <hr style="background-color:  rgb(110, 3, 211); width:100px">
 
         <div class="format-font" style="margin-top: 20px; line-height: 1.5;">
-            <p style="text-align: center; font-weight: bold;">Greetings!</p>
-            You received this mail because you attempted to make account on our website, 
-            Please click on the link below to confirm the email and activate your account.       
+            <p style="text-align: center; font-weight: bold;">{%trans "Greetings!"%}</p>
+            {%trans "You received this mail because you attempted to make account on our website. Please click on the link below to confirm the email and activate your account."%}
         </div>
 
         <p class="format-font" style="text-align: center; margin-top: 50px;">
-            Please verify your e-mail :
+            {%trans "Please verify your e-mail :"%}
             <hr style="background-color:  rgb(110, 3, 211); width:50px">
             <div class="format-font" style="text-align: center; margin-top: 30px;" >
                 <a href="{{link}}" class="my-button" >Verify</a>
@@ -70,11 +70,11 @@
         </p>
     
         <p class="format-font" style="margin-top: 50px;">
-           <b> You'll be joining us right after the verification !</b>
+           <b> {%trans "You'll be joining us right after the verification !"%}</b>
         </p>
     
         <p class="format-font" style="line-height: 1.5;">
-            <b>Thanks for joining! <br> This mail machine generated. <br>Do not reply to this mail </b>
+            <b>{%trans "Thanks for joining! <br> This mail machine generated. <br>Do not reply to this mail"%} </b>
         </p>
         
     </div>

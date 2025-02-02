@@ -1,0 +1,530 @@
+# Spanish Translations for NO NAME FOUND app.
+# Copyright (C) 2025 Olivier LEVILLAIN
+# This file is distributed under the same license as the application.
+# This file was generated from ../Django-Verify-Email/src/verify_email/locale/fr/LC_MESSAGES/django.po by [Auto-po-lyglot](https://github.com/leolivier/auto-po-lyglot)
+# using the granite3.1-dense:2b model. Depending on the model, it may contain some errors and should be reviewed
+# by a human translator. Also depending on the model, each translation can be preceded by an explanation provided
+# by the model.
+# Olivier LEVILLAIN <OWNER EMAIL>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.1.0\n"
+"Report-Msgid-Bugs-To: olivier@levillain.eu\n"
+"POT-Creation-Date: 2025-02-02 15:02+0100\n"
+"PO-Revision-Date: 2025-02-02 16:01+00:00\n"
+"\n"
+"Last-Translator: Auto-po-lyglot using granite3.1-dense:2b (https://github.com/leolivier/auto-po-lyglot)\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Explanation: The English phrase "Email Verification Mail" translates to
+#. Spanish as "Correo de verificación de dirección de correo electrónico."
+#. This translation maintains the meaning of the original sentence, which
+#. refers to an email used for verifying a recipient's email address. The
+#. French translation "Courriel de vérification d'adresse mail" indicates that
+#. it is also an email for verification purposes, and this Spanish translation
+#. reflects the same concept while preserving the original English phrase's
+#. meaning.
+#: src/verify_email/app_configurations.py:31
+msgid "Email Verification Mail"
+msgstr "Correo de verificación de dirección de correo electrónico"
+
+#. Explanation: The English word "email" translates to the Spanish term
+#. "correo electrónico," which directly corresponds to the French phrase
+#. "courriel." Both terms refer to electronic mail, and they maintain their
+#. meaning and nuance when translated into Spanish.
+#: src/verify_email/app_configurations.py:36
+msgid "email"
+msgstr "Correo electrónico"
+
+#. Explanation: The English sentence indicates that the user's email has been
+#. successfully verified and their account has been activated, allowing them
+#. to log in with their provided credentials. This is accurately translated
+#. into Spanish as "Tu correo electrónico ha sido verificado con éxito y tu
+#. cuenta ha sido activada. Ahora puedes iniciar sesión con tus
+#. credenciales..." The use of "ahora" emphasizes the immediacy of being able
+#. to log in, and "con tus credenciales" maintains the original meaning of
+#. using provided credentials for login.
+#: src/verify_email/app_configurations.py:61
+msgid ""
+"Your Email is verified successfully and account has been activated. You can "
+"login with the credentials now..."
+msgstr ""
+"Tu correo electrónico ha sido verificado con éxito y tu cuenta ha sido "
+"activada. Ahora puedes iniciar sesión con tus credenciales..."
+
+#. Explanation: The English sentence indicates that there is a problem with
+#. the link and user verification cannot be performed. This is accurately
+#. translated into Spanish as "Hay algo mal con este enlace, no se puede
+#. verificar al usuario...". The use of "algo" (something) in Spanish
+#. maintains the meaning of ambiguity from the English phrase "there is
+#. something wrong with this link".
+#: src/verify_email/app_configurations.py:77
+msgid "There is something wrong with this link, can't verify the user..."
+msgstr "Hay algo mal con este enlace, no se puede verificar al usuario..."
+
+#. Explanation: The English phrase "Verify Email address" translates to
+#. Spanish as "Verifique la dirección de correo electrónico," which literally
+#. means "Check the email address." This translation maintains the meaning and
+#. tone of the original English sentence, indicating an action of confirming
+#. or checking an email address.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:10
+msgid "Verify Email address"
+msgstr "Verifique la dirección de correo electrónico"
+
+#. Explanation: The English phrase "Account Activation" translates directly to
+#. Spanish as "Activación del cuenta," where "del cuenta" is a possessive
+#. adjective indicating ownership of the account. This maintains the meaning
+#. and nuance of the original sentence, which refers to the process of
+#. enabling or making an account functional.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:52
+msgid "Account Activation"
+msgstr "Activación del cuenta"
+
+#. Explanation: The English phrase "E-mail Confirmation" translates to Spanish
+#. as "Confirmación del e-mail," which directly corresponds to the provided
+#. French translation, "Confirmation de l'e-mail." Both translations convey
+#. the same meaning, indicating a confirmation related to an email.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:56
+msgid "E-mail Confirmation"
+msgstr "Confirmación del correo electrónico"
+
+#. Explanation: The English phrase "Greetings!" is a formal way to say hello,
+#. similar to the French "Salut!". In Spanish, this translates directly as
+#. "¡Hola!", which maintains the same level of formality.
+#. English sentence: "%(name)s is coming to visit.", French translation:
+#. "%(nom)s va venir visiter."
+#. Spanish translation: "%(nombre)s está llegando a visitar."
+#. Explanation: The English placeholder "%(name)" represents the person's
+#. name, while in French it translates as "%(nom)". In Spanish, this
+#. placeholder is translated as "%(nombre)", which also signifies the person's
+#. name. The verb "is coming" in English corresponds to "está llegando" in
+#. Spanish, and "to visit" remains unchanged.
+#. English sentence: "<h1>Welcome to our website!</h1>", French translation:
+#. "<h1>Bienvenue sur notre site web!</h1>"
+#. Spanish translation: "<h1>¡Bienvenido a nuestro sitio web!</h1>"
+#. Explanation: The HTML tag <h1> in English signifies the main heading of the
+#. webpage, which translates to <h1> in French and Spanish. The phrase
+#. "Welcome to our website!" remains consistent across all three languages.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:59
+msgid "Greetings!"
+msgstr "¡Hola!"
+
+#. Explanation: This Spanish translation maintains the meaning and tone of the
+#. French sentence while adhering to proper grammar, spelling, and
+#. punctuation. The phrase "You received this mail" is translated as
+#. "Recibiste este correo electrónico," which conveys the same idea that the
+#. recipient got an email. The action described in English ("attempted to make
+#. account") is translated as "intentaste de crear una cuenta" in Spanish,
+#. emphasizing the attempt to create a website account.
+#. The instruction to confirm the email and activate the account remains
+#. consistent in both translations. The use of "por favor" (Spanish for
+#. "please") ensures politeness, which is preserved from the French original.
+#. The link provided in the English sentence is translated as "haz clic en el
+#. enlace a continuación," maintaining its function as a call to action.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:60
+msgid ""
+"You received this mail because you attempted to make account on our website."
+" Please click on the link below to confirm the email and activate your "
+"account."
+msgstr ""
+"Recibiste este correo electrónico porque intentaste crear una cuenta en "
+"nuestro sitio web. Por favor, haz clic en el enlace a continuación para "
+"confirmar tu dirección de correo electrónico y activar tu cuenta."
+
+#. Explanation: The English phrase "Please verify your e-mail" translates to
+#. Spanish as "Por favor, verifique su correo electrónico," which maintains
+#. the polite tone and request for action. The French translation "Merci de
+#. vérfier ton email" is used as contextual information to help clarify that
+#. the English phrase refers to verifying an e-mail address. In Spanish, this
+#. translates to "Gracias por verificar su correo electrónico," preserving the
+#. politeness and request for action.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:64
+msgid "Please verify your e-mail :"
+msgstr "Por favor, verifique su correo electrónico."
+
+#. Explanation: The English sentence conveys that the action of joining will
+#. occur immediately following verification. This is accurately translated
+#. into Spanish as "Tú te unirás a nosotros justo después de la verificación,"
+#. which means "You will join us right after the verification."
+#: src/verify_email/templates/verify_email/email_verification_msg.html:73
+msgid "You'll be joining us right after the verification !"
+msgstr "Tú te unirás a nosotros justo después de la verificación."
+
+#. Explanation: The English sentence is a polite greeting, acknowledging the
+#. recipient's participation in an event or group (thank you for joining). The
+#. French translation maintains this sentiment while conveying that the email
+#. was automatically generated by a machine. The Spanish translation reflects
+#. this meaning by saying "Gracias por unirse!" which translates to "Thank you
+#. for joining!".
+#. The HTML markers "<br>" are preserved in their semantic location,
+#. separating the greeting from the rest of the message. In Spanish, these
+#. markers are replaced with the appropriate punctuation (a comma) to maintain
+#. readability and clarity. The phrase "Mail généré par une machine" is
+#. translated as "Este correo electrónico fue generado por una máquina", which
+#. means "This email was generated by a machine".
+#. The final part of the English sentence, "Do not reply to this mail," is
+#. translated into Spanish as "No responda a este correo electrónico." This
+#. maintains the original meaning and tone.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:77
+msgid ""
+"Thanks for joining! <br> This mail machine generated. <br>Do not reply to "
+"this mail"
+msgstr ""
+"Gracias por unirse! <br> Este correo electrónico fue generado por una "
+"máquina. <br> No responda a este correo electrónico."
+
+#. Explanation: The English phrase "Log In" translates to the Spanish word
+#. "Ingresar," which means "to enter." This is consistent with the French
+#. translation, "Connexion," which also means "connection" or "login." Both
+#. phrases convey the idea of entering a system or account.
+#: src/verify_email/templates/verify_email/email_verification_successful.html:28
+msgid "Log In"
+msgstr "Ingreso"
+
+#. Explanation: The English phrase "Link Expired!" translates to Spanish as
+#. "El enlace ha expirado," which means "The link has expired." This
+#. translation maintains the meaning, tone, and nuance of the original English
+#. sentence.
+#: src/verify_email/templates/verify_email/link_expired.html:20
+msgid "Link Expired!"
+msgstr "El enlace ha expirado."
+
+#. Explanation: The English phrase "The link has lived its life :(" conveys
+#. the idea that something is sad or disappointing about a link that should
+#. have been active but isn't, hence the use of emojis to express this
+#. sentiment. In Spanish, we maintain this emotional tone by using the same
+#. words and emojis: "El enlace ha vivido su vida :(". The French translation
+#. "Le lien a vécu sa vie :( Impossible de valider un lien mort..." translates
+#. to "The link has lived its life :( It is impossible to validate a dead
+#. link...", which we preserve in Spanish as "El enlace ha vivido su vida :(".
+#. The use of the colon and parentheses in both English and French indicates
+#. an interjection or exclamation, so it's crucial that this structure remains
+#. consistent across translations.
+#: src/verify_email/templates/verify_email/link_expired.html:26
+msgid "The link has lived its life :( Can not validate a dead link..."
+msgstr "El enlace ha vivido su vida :(\"."
+
+#. Explanation: The English phrase "Request Another one" translates to Spanish
+#. as "Pida otro," which means "Ask for another." In this context, the word
+#. "another" refers to a second item or occurrence. Therefore, "Pida otro"
+#. conveys the same meaning in Spanish, indicating that the speaker is asking
+#. for a second item or event.
+#: src/verify_email/templates/verify_email/link_expired.html:35
+msgid "Request Another one"
+msgstr "Pida otro"
+
+#. Explanation: This Spanish translation maintains the meaning of the English
+#. phrase, which is to request a new email for verification. The word order
+#. and structure are consistent with Spanish grammar, preserving the tone and
+#. nuance of the original sentence.
+#: src/verify_email/templates/verify_email/request_new_email.html:18
+msgid "Request New Email for Verification"
+msgstr "Solicitar un nuevo correo electrónico para verificación"
+
+#. Explanation: The English phrase "Request New Email" translates to Spanish
+#. as "Solicitar una nueva dirección de correo electrónico," which means
+#. "Request a new email address." This translation maintains the meaning,
+#. tone, and nuance of the original English sentence while preserving proper
+#. grammar, spelling, and punctuation in Spanish. The placeholder
+#. "%(email_request)s" is not present in this sentence, so it is not
+#. translated.
+#: src/verify_email/templates/verify_email/request_new_email.html:28
+msgid "Request New Email"
+msgstr "Solicitar una nueva dirección de correo electrónico."
+
+#. Explanation: The English sentence indicates that the template is typically
+#. adjusted by a specific app's template. This meaning is preserved in Spanish
+#. with "De manera habitual," which translates to "Usually" or "Typically."
+#. The phrase "por el plantilla de tu propia aplicación" directly corresponds
+#. to "by your own app's template" and maintains the same semantic structure,
+#. indicating that the modification comes from a custom application.
+#: src/verify_email/templates/verify_email/request_new_email.html:33
+msgid "Usually this template needs to be changed by your own app's template"
+msgstr ""
+"De manera habitual, este plantilla debe ser modificada por el plantilla de "
+"tu propia aplicación."
+
+#. Explanation: The English phrase "Method not allowed" indicates that the
+#. requested action is forbidden for the given context, which translates to
+#. Spanish as "Metodo no permitido." This maintains the meaning and tone of
+#. the original sentence.
+#. English sentence: "%(follower_name)s has liked %(post_title)s on
+#. %(platform)s", French translation: "%(follower_name)s a aimé %(post_title)s
+#. sur %(platform)s"
+#. Spanish translation: "%(follower_name)s ha gustado %(post_title)s en
+#. %(platform)s"
+#. Explanation: The English sentence describes the action of liking a post on
+#. a specific platform by a follower. This translates to Spanish as "has
+#. gustado," which means "liked." The placeholders are kept in their original
+#. positions, and the meaning is preserved.
+#. English sentence: "<h1>Welcome to our website</h1>", French translation:
+#. "<h1>Bienvenue sur notre site web</h1>"
+#. Spanish translation: "<h1>¡Bienvenido a nuestro sitio web!</h1>"
+#. Explanation: The English sentence is an HTML heading indicating the welcome
+#. message for a website. This translates to Spanish as "Bienvenue sur notre
+#. site web," which means "Welcome to our website." The HTML tags are
+#. preserved in their original positions, and the meaning is maintained.
+#: src/verify_email/views.py:48
+msgid "Method not allowed"
+msgstr "Metodo no permitido"
+
+#. Explanation: The English phrase "Verification Successful!" translates
+#. directly to Spanish as "Verificación exitosa!". This translation maintains
+#. the positive affirmation and successful outcome conveyed in the original
+#. English sentence. The exclamation mark is also preserved, indicating
+#. excitement or triumph.
+#: src/verify_email/views.py:60
+msgid "Verification Successful!"
+msgstr "Verificación exitosa!"
+
+#. Explanation: The English phrase "There is something wrong with this
+#. link..." implies a problem or issue with the given link. In Spanish, this
+#. meaning is preserved as "Hay algo mal con este enlace...", where "algo"
+#. means "something," and "mal" means "wrong." This translation maintains the
+#. tone of caution and potential concern about the link's functionality.
+#: src/verify_email/views.py:74
+msgid "There is something wrong with this link..."
+msgstr "Hay algo mal con este enlace..."
+
+#. Explanation: The English phrase "Verification Failed!" conveys the same
+#. meaning as the French phrase "Vérification échouée!". Both indicate that a
+#. verification process has not been successful. In Spanish, this translates
+#. to "Verificación fallida!", maintaining the same tone and nuance of failure
+#. in the verification process. The placeholder "%(verification_result)s" is
+#. not present in this sentence, so it remains unchanged.
+#: src/verify_email/views.py:75
+msgid "Verification Failed!"
+msgstr "Verificación fallida!"
+
+#. Explanation: The English phrase "The link has lived its life :(" conveys
+#. that the link is no longer functional or operational, and it's requesting a
+#. new one. This sentiment is preserved in Spanish as "El enlace ha vivido su
+#. vida :(". The use of parentheses to indicate sadness is also maintained in
+#. Spanish with the same punctuation.
+#: src/verify_email/views.py:83
+msgid "The link has lived its life :( Request a new one!"
+msgstr "El enlace ha vivido su vida :(\"."
+
+#. Explanation: The English phrase "Expired!" is an exclamation indicating
+#. that something has passed its due date or time limit. In Spanish, this
+#. meaning remains the same, and we use the word "expirado" to convey the same
+#. idea. The exclamation mark is also preserved in Spanish as it indicates
+#. emphasis and urgency.
+#: src/verify_email/views.py:84
+msgid "Expired!"
+msgstr "Expirado!"
+
+#. Explanation: The English phrase "This link was modified before
+#. verification" indicates that the link underwent changes prior to being
+#. checked or validated. This meaning is preserved in Spanish as "Este enlace
+#. fue modificado antes de la verificación," where "este" refers to the link,
+#. and "modificado" means "modified." The verb "fue" (was) conveys that this
+#. action occurred before the process of verification.
+#: src/verify_email/views.py:94
+msgid "This link was modified before verification."
+msgstr "Este enlace fue modificado antes de la verificación."
+
+#. Explanation: The English sentence states that it is not possible to request
+#. another verification link due to a faulty link. This meaning is preserved
+#. in the Spanish translation, "No es posible solicitar otro enlace de
+#. verificación con un enlace defectuoso," where "no es posible" translates to
+#. "is not possible," and "solicitar" means "to request." The phrase "con un
+#. enlace defectuoso" maintains the idea of a faulty link.
+#: src/verify_email/views.py:95
+msgid "Cannot request another verification link with faulty link."
+msgstr ""
+"No es posible solicitar otro enlace de verificación con un enlace "
+"defectuoso."
+
+#. Explanation: The English phrase "Faulty Link Detected!" translates to
+#. Spanish as "Error en el enlace detectado!". This translation maintains the
+#. alertive tone and indicates a problem with a link, which is consistent with
+#. the French translation "Lien défectueux détecté!", meaning "Defective link
+#. detected!". The use of "error" in Spanish conveys the same sense of an
+#. issue or malfunction as "faulty" in English.
+#: src/verify_email/views.py:96
+msgid "Faulty Link Detected!"
+msgstr "Error en el enlace detectado!"
+
+#. Explanation: The English sentence "You have exceeded the maximum
+#. verification requests!" translates to Spanish as "Has excedido el número
+#. máximo de solicitudes de verificación." This translation maintains the
+#. meaning of the original sentence, which indicates that someone has gone
+#. beyond the allowed limit for verification requests and should now contact
+#. an administrator. The use of "has" in English is translated as "ha
+#. excedido" in Spanish to convey the same action.
+#: src/verify_email/views.py:104 src/verify_email/views.py:193
+msgid "You have exceeded the maximum verification requests! Contact admin."
+msgstr ""
+"Has excedido el número máximo de solicitudes de verificación. Póngase en "
+"contacto con el administrador."
+
+#. Explanation: The English phrase "Maxed out!" is an exclamation indicating
+#. that something has reached its limit or full capacity. In this context, the
+#. Spanish translation "Maximizado!" conveys a similar meaning, emphasizing
+#. the achievement of reaching the maximum level.
+#: src/verify_email/views.py:105 src/verify_email/views.py:194
+msgid "Maxed out!"
+msgstr "Maximizado!"
+
+#. Explanation: The English sentence indicates that the provided link is
+#. either invalid or has already been used. This meaning is preserved in
+#. Spanish with "Este enlace no es válido" (This link is not valid) and "ya ha
+#. sido utilizado" (has already been used). The phrase "no podemos verificar
+#. su uso con este enlace" (we cannot verify its use with this link)
+#. translates to the Spanish equivalent, maintaining the tone and nuance of
+#. the original English sentence.
+#: src/verify_email/views.py:113 src/verify_email/views.py:202
+msgid ""
+"This link is invalid or been used already, we cannot verify using this link."
+msgstr ""
+"Este enlace no es válido o ya ha sido utilizado, por lo que no podemos "
+"verificar su uso con este enlace."
+
+#. Explanation: The English phrase "Invalid Link" translates to Spanish as
+#. "Enlace inválido," which directly corresponds to the French translation
+#. "Lien invalide." Both phrases convey the same meaning, indicating that a
+#. link is not functional or accessible.
+#: src/verify_email/views.py:114 src/verify_email/views.py:203
+msgid "Invalid Link"
+msgstr "Enlace inválido"
+
+#. Explanation: This Spanish translation reflects the meaning of the French
+#. phrase, which indicates a server error where the requested resource (in
+#. this case, a user) could not be located. The English phrase "404 User not
+#. found" directly translates to "404 Usuario no encontrado," preserving the
+#. original message's intent and tone.
+#. HTML placeholders:
+#. ```
+#. English sentence: "<h1>404 - User not found</h1>", French translation:
+#. "<h1>404 - Utilisateur non trouvé</h1>"
+#. ```
+#. Spanish translation:
+#. ```
+#. "<h1>404 - Usuario no encontrado</h1>"
+#. ```
+#: src/verify_email/views.py:118
+msgid "404 User not found"
+msgstr "404 Usuario no encontrado"
+
+#. Explanation: The English phrase "User is already active" indicates that the
+#. user has been previously engaged or logged in. In Spanish, this translates
+#. to "El usuario ya está activo," which means "The user is already active."
+#. The word order and verb tense are preserved from the original sentence to
+#. maintain clarity and meaning.
+#. ```
+#. "El usuario ya está activo."
+#. ```
+#: src/verify_email/views.py:133
+msgid "User is already active"
+msgstr "El usuario ya está activo."
+
+#. Explanation: The English phrase "You have requested another verification
+#. email!" translates to Spanish as "Has solicitado otro correo electrónico de
+#. verificación!". This translation maintains the subject (you), verb tense
+#. (past perfect), and meaning of the original sentence. The use of "has" in
+#. Spanish is equivalent to "has" in English, indicating a past action.
+#: src/verify_email/views.py:142 src/verify_email/views.py:165
+msgid "You have requested another verification email!"
+msgstr "Has solicitado otro correo electrónico de verificación!"
+
+#. Explanation: This Spanish translation reflects the meaning of the French
+#. phrase, which indicates that the verification link has been sent. The
+#. English phrase "Your verification link has been sent" is straightforward
+#. and does not require additional context to understand its meaning.
+#. Therefore, the Spanish version "Tu enlace de verificación ha sido enviado."
+#. directly translates this English sentence while preserving its tone and
+#. nuance.
+#: src/verify_email/views.py:143 src/verify_email/views.py:166
+msgid "Your verification link has been sent"
+msgstr "Tu enlace de verificación ha sido enviado."
+
+#. Explanation: The English phrase "Email Sent!" translates to Spanish as
+#. "Correo enviado!". This is a straightforward translation, where "Email"
+#. becomes "Correo", and "Sent" remains unchanged. The exclamation mark at the
+#. end of the English sentence indicates excitement or confirmation, which is
+#. preserved in the Spanish translation with "enviado!"
+#. ```
+#. "Correo enviado!"
+#. ```
+#: src/verify_email/views.py:144 src/verify_email/views.py:167
+msgid "Email Sent!"
+msgstr "Correo enviado!"
+
+#. Explanation: The English sentence indicates that an issue occurred while
+#. sending an email, which is conveyed in the French translation as "Un
+#. problème s'est produit lors de l'envoi du courriel :(". In Spanish, this
+#. translates to "Algo falló mientras se enviaba el correo electrónico :(",
+#. preserving the meaning and tone of the original sentence. The colon and
+#. parentheses are kept in their semantic location as placeholders for the
+#. sender's name or other relevant information that might be included in the
+#. email.
+#: src/verify_email/views.py:171
+msgid "Something went wrong during sending email :("
+msgstr "Algo falló mientras se enviaba el correo electrónico :("
+
+#. Explanation: This Spanish translation reflects the meaning of the French
+#. phrase, which indicates that the user was not found linked to the given
+#. email. The English phrase "User not found associated with given email!" can
+#. be ambiguous, as it may imply either a lack of user or an incorrect
+#. association. The French translation makes it clear that the user is not
+#. found, so the Spanish version "Usuario no encontrado asociado con la
+#. dirección de correo electrónico dada!" follows this interpretation.
+#: src/verify_email/views.py:175
+msgid "User not found associated with given email!"
+msgstr ""
+"Usuario no encontrado asociado con la dirección de correo electrónico dada!"
+
+#. Explanation: The English phrase "User Not Found" translates directly to
+#. Spanish as "Usuario no encontrado," maintaining the same meaning and tone.
+#. There is no ambiguity in this sentence, so no additional explanation is
+#. needed.
+#. HTML placeholders example:
+#. ```
+#. English sentence: "<h1>User Not Found</h1>", French translation:
+#. "<h1>Utilisateur non trouvé</h1>"
+#. ```
+#. Spanish translation:
+#. ```
+#. "<h1>Usuario no encontrado</h1>"
+#. ```
+#: src/verify_email/views.py:177
+msgid "User Not Found"
+msgstr "Usuario no encontrado"
+
+#. Explanation: The English phrase "Internal server error!" is a colloquial
+#. way to indicate that there has been an unexpected issue with the server,
+#. causing it to fail or behave erratically. This translation reflects this
+#. meaning in Spanish as "Error del servidor interno!".
+#: src/verify_email/views.py:181 src/verify_email/views.py:185
+msgid "Internal server error!"
+msgstr "Error del servidor interno!"
+
+#. Explanation: The English phrase "This user's account is already active"
+#. indicates that the user has an existing, operational account. In Spanish,
+#. this translates to "Este usuario tiene una cuenta activa," which means
+#. "This user has an active account." The term "already" in English implies a
+#. state of being, and its equivalent in Spanish is "tiene," indicating
+#. possession or existence.
+#. ```
+#. "Este usuario tiene una cuenta activa."
+#. ```
+#: src/verify_email/views.py:211
+msgid "This user's account is already active"
+msgstr "Este usuario tiene una cuenta activa."
+
+#. Explanation: The English phrase "Already Verified!" translates to Spanish
+#. as "Ya verificado!". This translation maintains the affirmative tone and
+#. indicates that something has been confirmed or checked. In this context, it
+#. suggests that a process or action has been completed successfully with
+#. verification.
+#: src/verify_email/views.py:212
+msgid "Already Verified!"
+msgstr "Ya verificado!"

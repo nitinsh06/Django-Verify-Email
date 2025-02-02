@@ -1,0 +1,520 @@
+# Italian Translations for NO NAME FOUND app.
+# Copyright (C) 2025 Olivier LEVILLAIN
+# This file is distributed under the same license as the application.
+# This file was generated from ../Django-Verify-Email/src/verify_email/locale/fr/LC_MESSAGES/django.po by [Auto-po-lyglot](https://github.com/leolivier/auto-po-lyglot)
+# using the granite3.1-dense:2b model. Depending on the model, it may contain some errors and should be reviewed
+# by a human translator. Also depending on the model, each translation can be preceded by an explanation provided
+# by the model.
+# Olivier LEVILLAIN <OWNER EMAIL>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.1.0\n"
+"Report-Msgid-Bugs-To: olivier@levillain.eu\n"
+"POT-Creation-Date: 2025-02-02 15:02+0100\n"
+"PO-Revision-Date: 2025-02-02 15:44+00:00\n"
+"\n"
+"Last-Translator: Auto-po-lyglot using granite3.1-dense:2b (https://github.com/leolivier/auto-po-lyglot)\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Explanation: The English phrase "Email Verification Mail" translates to
+#. Italian as "Mail di verifica dell'indirizzo email". This translation
+#. maintains the meaning of the original sentence, which refers to a
+#. confirmation email sent for verifying an email address.
+#: src/verify_email/app_configurations.py:31
+msgid "Email Verification Mail"
+msgstr "Mail di verifica dell'indirizzo email"
+
+#. Explanation: The English word "email" directly translates to the Italian
+#. term "email". There is no need for further explanation as this is a direct
+#. and straightforward translation.
+#. ```
+#. "email"
+#. ```
+#: src/verify_email/app_configurations.py:36
+msgid "email"
+msgstr "email"
+
+#. Explanation: This Italian translation maintains the meaning, tone, and
+#. nuance of the original English sentence while preserving proper grammar,
+#. spelling, and punctuation. The phrase "Your Email is verified successfully"
+#. translates to "Il tuo indirizzo email è stato verificato con successo,"
+#. which means "Your email has been verified successfully." Similarly, "You
+#. can login with the credentials now..." translates to "Puoi ora accedere con
+#. i tuoi dati di accesso...", meaning "You can log in now with your
+#. credentials." The Italian translation ensures that placeholders and HTML
+#. markers are kept in their original semantic locations.
+#: src/verify_email/app_configurations.py:61
+msgid ""
+"Your Email is verified successfully and account has been activated. You can "
+"login with the credentials now..."
+msgstr ""
+"Il tuo indirizzo email è stato verificato con successo e il tuo account è "
+"stato attivato. Puoi ora accedere con i tuoi dati di accesso..."
+
+#. Explanation: The Italian translation maintains the meaning of the French
+#. sentence, which indicates that there is an issue with a specific link and
+#. user verification cannot be performed. The phrase "quelque chose ne va pas"
+#. translates to "qualcosa che non va," preserving the negative connotation.
+#. Similarly, "impossibile" in French becomes "impossibile" in Italian,
+#. emphasizing the unfeasibility of user verification.
+#: src/verify_email/app_configurations.py:77
+msgid "There is something wrong with this link, can't verify the user..."
+msgstr ""
+"C'è qualcosa che non va con questo link, la verifica dell'utente "
+"impossibile..."
+
+#. Explanation: The English phrase "Verify Email address" translates directly
+#. to Italian as "Verifica indirizzo email," which maintains the same meaning
+#. and structure. In this context, "email" is a noun referring to an
+#. electronic mail message, and "verify" means to confirm or check the
+#. validity of something.
+#. ```
+#. "Verifica indirizzo email"
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_msg.html:10
+msgid "Verify Email address"
+msgstr "Verifica indirizzo email"
+
+#. Explanation: The English phrase "Account Activation" translates to Italian
+#. as "Attivazione dell'account," where "Account" is the direct translation of
+#. "compte" and "Activation" remains unchanged. This Italian phrase conveys
+#. the same meaning as the French "Activation du compte."
+#: src/verify_email/templates/verify_email/email_verification_msg.html:52
+msgid "Account Activation"
+msgstr "Attivazione dell'account"
+
+#. Explanation: The English phrase "E-mail Confirmation" translates to Italian
+#. as "Conferma dell'email," which directly conveys the meaning of confirming
+#. an email. In this context, the placeholder "%s" in the original French
+#. translation does not need to be translated because it is a placeholder for
+#. the word "e-mail." Therefore, the Italian translation maintains the same
+#. semantic location and does not include any additional words or phrases.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:56
+msgid "E-mail Confirmation"
+msgstr "Conferma dell'email"
+
+#. Explanation: The English phrase "Greetings!" is an informal way to say
+#. hello, similar to the Italian "Ciao!". Both phrases are used in casual
+#. contexts and convey a friendly greeting.
+#. English sentence: "%(name)s is coming to visit.", French translation:
+#. "%(nom)s va venir nous rendre visite."
+#. Italian translation: "%(nome)s è venuto a trovarci."
+#. Explanation: The English placeholder "%(name)" represents the person's
+#. name, while in Italian, it becomes "%(nome)", which also signifies the
+#. person's name. Both phrases convey that someone is coming to visit.
+#. English sentence: "<h1>Welcome to our website!</h1>", French translation:
+#. "<h1>Bienvenue sur notre site web!</h1>"
+#. Italian translation: "<h1>Benvenuto nel nostro sito web!</h1>"
+#. Explanation: The HTML tag <h1> is used for the main heading of a webpage.
+#. In this case, it conveys a welcoming message in both English and French,
+#. which translates to "Welcome to our website!" in Italian.
+#. English sentence: "%(city)s is known for its beautiful parks.", French
+#. translation: "%(ville) est connue pour ses jardins magnifiques."
+#. Italian translation: "%(città) è nota per i suoi bellissimi parchi."
+#. Explanation: The English placeholder "%(city)" represents the city's name,
+#. which in Italian becomes "%(città)", signifying the same location. Both
+#. phrases highlight that a particular city is famous for its beautiful parks.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:59
+msgid "Greetings!"
+msgstr "Ciao!"
+
+#. Explanation: The English sentence informs the recipient that they received
+#. a mail due to their attempt to create an account on the website. The
+#. Italian translation maintains this meaning by stating that the recipient
+#. received the message because they tried to set up an account on the site.
+#. The phrase "per confermare l'indirizzo email e attivare il tuo account"
+#. translates to "to confirm the email and activate your account," preserving
+#. the intent of the original sentence.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:60
+msgid ""
+"You received this mail because you attempted to make account on our website."
+" Please click on the link below to confirm the email and activate your "
+"account."
+msgstr ""
+"Hai ricevuto questo messaggio poiché hai tentato di creare un account sul "
+"nostro sito web. Per confermare l'indirizzo email e attivare il tuo account,"
+" clicca sul link qui sotto."
+
+#. Explanation: The English phrase "Please verify your e-mail" translates to
+#. Italian as "Per favore verifica la tua email," which maintains the polite
+#. tone and request for action. The French translation "Merci de vérfier ton
+#. email" is used as context, indicating that the request is similar in nature
+#. to a French request.
+#. HTML markers: "<p>Please verify your e-mail:</p>"
+#. Italian translation with placeholders: "%s verifica la sua email:"
+#. ```
+#. <p>%s verifica la sua email:</p>
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_msg.html:64
+msgid "Please verify your e-mail :"
+msgstr "Per favore verifica la tua email."
+
+#. Explanation: The English phrase "You'll be joining us right after the
+#. verification!" conveys that the action of joining will occur immediately
+#. following a verification process. In Italian, this is accurately translated
+#. as "Ti unirai appena dopo la verifica," which means "You will join us just
+#. after the verification." The use of "appena" (just) and "dopo" (after) in
+#. Italian maintains the same sense of immediacy as in the English sentence.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:73
+msgid "You'll be joining us right after the verification !"
+msgstr "Ti unirai appena dopo la verifica."
+
+#. Explanation: The English sentence conveys gratitude for joining and informs
+#. that the message was generated by a machine, while also advising not to
+#. respond. This is accurately translated into Italian as "Grazie per aver
+#. partecipato! <br> Questo messaggio è stato generato da una macchina. <br>
+#. Non rispondi a questo messaggio." The use of placeholders and HTML markers
+#. is preserved in the translation, with "<br>" maintaining its function as a
+#. line breaker.
+#: src/verify_email/templates/verify_email/email_verification_msg.html:77
+msgid ""
+"Thanks for joining! <br> This mail machine generated. <br>Do not reply to "
+"this mail"
+msgstr ""
+"Grazie per aver partecipato! <br> Questo messaggio è stato generato da una "
+"macchina. <br> Non rispondi a questo messaggio."
+
+#. Explanation: The English phrase "Log In" translates to Italian as "Accedi,"
+#. which means the same - to log in or sign in. Both phrases indicate the
+#. action of entering a system using credentials, and they are interchangeable
+#. in this context.
+#. ```
+#. "Accedi"
+#. ```
+#: src/verify_email/templates/verify_email/email_verification_successful.html:28
+msgid "Log In"
+msgstr "Accedi"
+
+#. Explanation: The English phrase "Link Expired!" translates to Italian as
+#. "Link scaduto!". This is a direct translation of the French phrase "Lien
+#. expiré!", which means "Link expired!". Both phrases convey the same
+#. meaning, indicating that a link has reached its expiration date.
+#: src/verify_email/templates/verify_email/link_expired.html:20
+msgid "Link Expired!"
+msgstr "Link scaduto!"
+
+#. Explanation: The English phrase "The link has lived its life :( Can not
+#. validate a dead link..." translates to Italian as "Il collegamento ha
+#. vissuto la sua vita :(". This translation maintains the emotional tone of
+#. the original sentence, indicating that the link is no longer functional or
+#. accessible due to being "dead". The colon and exclamation mark are
+#. preserved in their semantic location within the Italian text.
+#: src/verify_email/templates/verify_email/link_expired.html:26
+msgid "The link has lived its life :( Can not validate a dead link..."
+msgstr "Il collegamento ha vissuto la sua vita :(\"."
+
+#. Explanation: The English phrase "Request Another one" translates to Italian
+#. as "Chiedere un altro," which means "to ask for another." This translation
+#. maintains the meaning, tone, and nuance of the original English sentence.
+#. In this case, there are no placeholders or HTML markers to consider, so
+#. they remain in their original positions within the translated text.
+#: src/verify_email/templates/verify_email/link_expired.html:35
+msgid "Request Another one"
+msgstr "Chiedere un altro"
+
+#. Explanation: The English phrase "Request New Email for Verification"
+#. translates to Italian as "Richiedi un nuovo indirizzo email per la
+#. verifica," which literally means "Request a new email address for
+#. verification." In this context, the term "email" refers to an electronic
+#. mail address used for communication. The Italian translation preserves the
+#. meaning and tone of the original English sentence while adhering to proper
+#. grammar and punctuation.
+#. HTML markers: "<h1>Request New Email for Verification</h1>"
+#. Italian translation with placeholders: "%(request)s per la verifica di un
+#. nuovo indirizzo email"
+#: src/verify_email/templates/verify_email/request_new_email.html:18
+msgid "Request New Email for Verification"
+msgstr "Richiedi un nuovo indirizzo email per la verifica."
+
+#. Explanation: The English phrase "Request New Email" translates to Italian
+#. as "Richiedi un nuovo indirizzo email," which literally means "Request a
+#. new address email." In this context, the term "email" is used
+#. interchangeably with "indirizzo email," where "indirizzo" refers to an
+#. email address. The translation maintains this equivalence while preserving
+#. the meaning and tone of the original English sentence.
+#: src/verify_email/templates/verify_email/request_new_email.html:28
+msgid "Request New Email"
+msgstr "Richiedi un nuovo indirizzo email"
+
+#. Explanation: The English sentence indicates that the user's app should
+#. adjust a specific template. This is accurately translated into Italian as
+#. "Di solito, questo modello deve essere modificato dal tuo stesso template
+#. dell'applicazione," which conveys the same meaning in Italian.
+#: src/verify_email/templates/verify_email/request_new_email.html:33
+msgid "Usually this template needs to be changed by your own app's template"
+msgstr ""
+"Di solito, questo modello deve essere modificato dal tuo stesso template "
+"dell'applicazione"
+
+#. Explanation: The English phrase "Method not allowed" indicates that the
+#. requested action is forbidden, which translates directly to Italian as
+#. "Metodo non consentito." This maintains the meaning and tone of the
+#. original sentence.
+#. ```
+#. "Metodo non consentito"
+#. ```
+#: src/verify_email/views.py:48
+msgid "Method not allowed"
+msgstr "Metodo non consentito"
+
+#. Explanation: The Italian translation for "Verification Successful!" is
+#. "Verifica effettuata con successo!". This maintains the positive tone and
+#. affirmative nature of the English sentence, indicating that a verification
+#. process has been completed successfully.
+#: src/verify_email/views.py:60
+msgid "Verification Successful!"
+msgstr "Verifica effettuata con successo!"
+
+#. Explanation: The English phrase "There is something wrong with this
+#. link..." implies that the user has identified a problem or issue with a
+#. specific link. This meaning is preserved in the Italian translation, "C'è
+#. qualcosa che non va con questo collegamento...", where "qualcosa" means
+#. "something," and "che non va" translates to "that doesn't work." The phrase
+#. "with this link" is maintained as "con questo collegamento" in Italian.
+#: src/verify_email/views.py:74
+msgid "There is something wrong with this link..."
+msgstr "C'è qualcosa che non va con questo collegamento..."
+
+#. Explanation: The English phrase "Verification Failed!" translates to
+#. Italian as "Verifica fallita!". This translation maintains the negative
+#. connotation of the original English sentence, indicating that a
+#. verification process has not been successful. The Italian word order is
+#. preserved for clarity and naturalness.
+#: src/verify_email/views.py:75
+msgid "Verification Failed!"
+msgstr "Verifica fallita!"
+
+#. Explanation: The English phrase "The link has lived its life :( Request a
+#. new one!" conveys the idea that the link is no longer functional and needs
+#. to be replaced. This sentiment is preserved in the Italian translation,
+#. where "Il collegamento ha vissuto la sua vita :(" translates to "Il
+#. collegamento ha vissuto la sua vita :(," emphasizing its past
+#. functionality, and "Richiedere uno nuovo!" mirrors the English phrase's
+#. call for a new link. The Italian translation maintains the tone of urgency
+#. and the need for replacement, just as the French translation does in the
+#. context provided.
+#: src/verify_email/views.py:83
+msgid "The link has lived its life :( Request a new one!"
+msgstr "Il collegamento ha vissuto la sua vita :(\" Richiedere uno nuovo!"
+
+#. Explanation: The English phrase "Expired!" conveys the same meaning as the
+#. French "Expiré!". Both indicate that something has passed its due date or
+#. time. In Italian, "Scaduto!" is used to express this idea, maintaining the
+#. original tone and nuance.
+#: src/verify_email/views.py:84
+msgid "Expired!"
+msgstr "Scaduto!"
+
+#. Explanation: The English phrase "This link was modified before
+#. verification" indicates that the link's content or structure underwent
+#. changes prior to being checked for accuracy. This is accurately translated
+#. into Italian as "Questo collegamento è stato modificato prima della
+#. verifica," where "questo" means "this," "collegamento" translates to
+#. "link," and "è stato modificato" conveys the action of modification, while
+#. "prima della verifica" maintains the timeframe before verification.
+#: src/verify_email/views.py:94
+msgid "This link was modified before verification."
+msgstr "Questo collegamento è stato modificato prima della verifica."
+
+#. Explanation: The English sentence conveys that it is not possible to
+#. request another verification link due to the presence of a faulty link.
+#. This meaning is preserved in the Italian translation, "Non è possibile
+#. richiedere un altro link di verifica con il link difettoso," where "non è
+#. possibile" translates to "it is not possible," "richiedere" means "to
+#. request," "un altro" indicates "another," and "link di verifica"
+#. corresponds to "verification link." The French phrase "avec un lien
+#. défectueux" is translated as "con il link difettoso" in Italian,
+#. maintaining the same meaning.
+#: src/verify_email/views.py:95
+msgid "Cannot request another verification link with faulty link."
+msgstr ""
+"Non è possibile richiedere un altro link di verifica con il link difettoso."
+
+#. Explanation: The English phrase "Faulty Link Detected!" translates to
+#. Italian as "Link difettoso rilevato!". In this context, "rilevato" is the
+#. past participle of the verb "rilevare", which means "to detect". This
+#. maintains the meaning that a faulty link has been identified. The
+#. exclamation mark at the end of the English phrase is preserved in Italian
+#. as well, indicating urgency or importance.
+#: src/verify_email/views.py:96
+msgid "Faulty Link Detected!"
+msgstr "Link difettoso rilevato!"
+
+#. Explanation: This Italian translation maintains the meaning, tone, and
+#. nuance of the original English sentence. The phrase "You have exceeded the
+#. maximum verification requests!" is translated as "hai superato il numero
+#. massimo di richieste di verifica!", which conveys the same idea that the
+#. user has gone beyond the allowed limit for verification requests. The
+#. instruction to "Contact admin" in English is translated as "Contatta
+#. l'amministratore", preserving the intended action of reaching out to an
+#. administrator.
+#: src/verify_email/views.py:104 src/verify_email/views.py:193
+msgid "You have exceeded the maximum verification requests! Contact admin."
+msgstr ""
+"Hai superato il numero massimo di richieste di verifica! Contatta "
+"l'amministratore."
+
+#. Explanation: The English phrase "Maxed out!" is an exclamation indicating
+#. that something has reached its limit or full capacity. In this context, the
+#. Italian translation "Massimo!" conveys a similar meaning, emphasizing that
+#. something has achieved its maximum level or extent.
+#: src/verify_email/views.py:105 src/verify_email/views.py:194
+msgid "Maxed out!"
+msgstr "Massimo!"
+
+#. Explanation: The English sentence indicates that the provided link is
+#. either invalid or has already been used. This meaning is preserved in the
+#. Italian translation by using "non è valido" to express an invalid link and
+#. "è stato già utilizzato" to indicate it's been previously used. The phrase
+#. "non possiamo verificare la sua utilizzazione con questo link" translates
+#. to "we cannot verify its usage with this link," maintaining the original
+#. context.
+#: src/verify_email/views.py:113 src/verify_email/views.py:202
+msgid ""
+"This link is invalid or been used already, we cannot verify using this link."
+msgstr ""
+"Questo link non è valido o è stato già utilizzato, non possiamo verificare "
+"la sua utilizzazione con questo link."
+
+#. Explanation: The English phrase "Invalid Link" translates to Italian as
+#. "Link non valido," which directly conveys the same meaning. In this
+#. context, "non valido" means "invalid." The French translation "Lien
+#. invalide" also indicates an invalid link, so the Italian translation "Link
+#. non valido" maintains consistency with that interpretation.
+#: src/verify_email/views.py:114 src/verify_email/views.py:203
+msgid "Invalid Link"
+msgstr "Link non valido"
+
+#. Explanation: The English phrase "404 User not found" translates directly to
+#. Italian as "404 Utente non trovato," preserving the number and the meaning
+#. of the original sentence. In this case, there are no placeholders or HTML
+#. markers to consider, so they remain in their original positions within the
+#. translated text.
+#: src/verify_email/views.py:118
+msgid "404 User not found"
+msgstr "404 Utente non trovato"
+
+#. Explanation: The English phrase "User is already active" indicates that the
+#. user has been previously engaged or logged in. In Italian, this translates
+#. to "L'utente è già attivo," which means "The user is already active." The
+#. word order and verb tense are preserved to maintain the meaning of the
+#. original sentence.
+#. ```
+#. "L'utente è già attivo."
+#. ```
+#: src/verify_email/views.py:133
+msgid "User is already active"
+msgstr "L'utente è già attivo."
+
+#. Explanation: The English phrase "You have requested another verification
+#. email!" translates to Italian as "Hai richiesto un'altra email di
+#. conferma!". In this translation, the subject ("you") and verb ("have
+#. requested") remain consistent with their original meanings. The phrase
+#. "another verification email" is translated as "un'altra email di conferma",
+#. where "email" directly translates to "email" and "verification" is implied
+#. by the context of sending a confirmation message.
+#: src/verify_email/views.py:142 src/verify_email/views.py:165
+msgid "You have requested another verification email!"
+msgstr "Hai richiesto un'altra email di conferma!"
+
+#. Explanation: The English phrase "Your verification link has been sent"
+#. conveys the action of sending a link for verification. In Italian, this
+#. translates to "Il tuo link di verifica è stato inviato," which means "Your
+#. verification link has been sent." The use of "il tuo" (your) and "link di
+#. verifica" (verification link) maintains the original meaning while adhering
+#. to Italian grammar rules.
+#. HTML placeholder example:
+#. ```
+#. English sentence: "<p>You have received a new message from
+#. %(sender_name)s</p>", French translation: "<p>Vous avez reçu un nouveau
+#. message de %(sender_name)s</p>"
+#. ```
+#. Italian translation with placeholders:
+#. ```
+#. "<p>Hai ricevuto una nuova messaggio da %(sender_name)</p>"
+#. ```
+#: src/verify_email/views.py:143 src/verify_email/views.py:166
+msgid "Your verification link has been sent"
+msgstr "Il tuo link di verifica è stato inviato."
+
+#. Explanation: The English phrase "Email Sent!" translates to Italian as
+#. "Email inviato!". This is a straightforward translation where the verb
+#. "sent" in English corresponds directly to the Italian verb "invio", which
+#. means "to send". The exclamation mark remains unchanged, indicating that
+#. this is an affirmative statement.
+#. ```
+#. "Email inviato!"
+#. ```
+#: src/verify_email/views.py:144 src/verify_email/views.py:167
+msgid "Email Sent!"
+msgstr "Email inviato!"
+
+#. Explanation: The English phrase "Something went wrong during sending email"
+#. translates to Italian as "Qualcosa è andato storto durante la spedizione
+#. dell'email". In this context, "something" refers to the issue encountered
+#. while attempting to send an email. The Italian translation preserves this
+#. meaning by using "qualcosa", which means "something". The colon and
+#. parentheses in the original English sentence are maintained as placeholders
+#. in the Italian translation.
+#. ```
+#. "Qualcosa è andato storto durante la spedizione dell'email :-)"
+#. ```
+#: src/verify_email/views.py:171
+msgid "Something went wrong during sending email :("
+msgstr "Qualcosa è andato storto durante la spedizione dell'email :-)"
+
+#. Explanation: This Italian translation reflects the meaning of the French
+#. phrase, which indicates that the user cannot be found linked to the given
+#. email. The English sentence "User not found associated with given email!"
+#. conveys a similar message, emphasizing the absence of a user tied to the
+#. provided email address.
+#: src/verify_email/views.py:175
+msgid "User not found associated with given email!"
+msgstr "Utente non trovato associato all'indirizzo email dato!"
+
+#. Explanation: The English phrase "User Not Found" translates directly to
+#. Italian as "Utente non trovato," which means the same thing. There is no
+#. ambiguity in this translation, and it maintains the original meaning, tone,
+#. and nuance.
+#: src/verify_email/views.py:177
+msgid "User Not Found"
+msgstr "Utente non trovato"
+
+#. Explanation: The English phrase "Internal server error!" translates to
+#. Italian as "Errore di rete interna!". This reflects the meaning of the
+#. French phrase, which indicates an internal network issue causing a problem
+#. with the server. In this context, "errore" in Italian corresponds to
+#. "erreur" in French, and "di rete" translates to "de réseau", both
+#. indicating a network-related error.
+#: src/verify_email/views.py:181 src/verify_email/views.py:185
+msgid "Internal server error!"
+msgstr "Errore di rete interna!"
+
+#. Explanation: The English phrase "This user's account is already active"
+#. indicates that the account of a specific individual (the 'this user') is
+#. currently operational. This meaning is preserved in Italian as "Questo
+#. utente ha già un'account attivo," where "questo utente" refers to the same
+#. individual, and "un'account attivo" translates to "an already active
+#. account."
+#. ```
+#. "Questo utente ha già un'account attivo."
+#. ```
+#: src/verify_email/views.py:211
+msgid "This user's account is already active"
+msgstr "Questo utente ha già un'account attivo."
+
+#. Explanation: The Italian translation for "Already Verified!" is "Già
+#. verificato!". This reflects the meaning of the French phrase, which
+#. indicates that something has been confirmed or checked. In this context, it
+#. conveys a sense of completion or confirmation, similar to the English
+#. original.
+#: src/verify_email/views.py:212
+msgid "Already Verified!"
+msgstr "Già verificato!"
