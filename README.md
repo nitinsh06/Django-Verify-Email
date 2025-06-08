@@ -118,26 +118,31 @@ python manage.py migrate
 
 
 ### Step 4 :-
-For sending email from a signup form, in your views.py import:
-
-```
-...
-from verify_email.email_handler import send_verification_email
-```
-Now in the function where you are validating the form:
-
-```
-...
+### Step 4: Usage in Views
+In your views.py:
+```python
+from verify_email.email_handler import ActivationMailManager
 
 def register_user(request):
-    ...
-    
     if form.is_valid():
-
-        inactive_user = send_verification_email(request, form)
+        inactive_user = ActivationMailManager.send_verification_link(
+            request=request,
+            form=form
+        )
+        # Or if you already have a user object:
+        # inactive_user = ActivationMailManager.send_verification_link(
+        #     request=request, 
+        #     inactive_user=user
+        # )
 ```
 
-<b>Attention : </b>"send_verification_email()" takes two arguments, requests and form in order to set user's active status. 
+The `send_verification_link()` method returns the created inactive user object that you can use to access form data:
+
+```python
+email = inactive_user.email
+# Or from form data:
+email = inactive_user.cleaned_data['email']
+```
 
 The "inactive_user" that is returned by "send_verification_email()" contains a saved user object just like form.save() would do(with is_active status set as False), which you can further use to extract user information from cleaned_data dictionary, as shown below :
 
