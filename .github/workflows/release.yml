@@ -1,0 +1,106 @@
+name: Release
+
+# Manually-triggered release. Builds the package, tags the commit as
+# v<version> (version is read from pyproject.toml), and publishes a GitHub
+# Release with the wheel + sdist attached.
+#
+# PyPI upload is OFF by default here, because routine PyPI publishing already
+# happens on merge to main (see python-publish.yml). Flip "publish_to_pypi" on
+# if you want this manual release to also push to PyPI.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (optional; must match pyproject.toml). Leave blank to use pyproject.toml."
+        required: false
+        default: ""
+      publish_to_pypi:
+        description: "Also upload the built distributions to PyPI"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # create tags and GitHub Releases
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install Django pytest pytest-django
+      - name: Run tests
+        run: pytest
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # need full history + tags
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install build tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build twine
+
+      - name: Resolve and validate version
+        id: version
+        run: |
+          pyproject_version=$(grep -E '^version = ' pyproject.toml | head -1 | sed -E 's/^version = "(.*)"/\1/')
+          requested="${{ inputs.version }}"
+          version="${requested:-$pyproject_version}"
+          if [ "$version" != "$pyproject_version" ]; then
+            echo "::error::Requested version ($version) does not match pyproject.toml ($pyproject_version). Bump pyproject.toml first."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "Releasing v$version"
+
+      - name: Ensure tag does not already exist
+        run: |
+          if git rev-parse "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "::error::Tag ${{ steps.version.outputs.tag }} already exists. Bump the version in pyproject.toml."
+            exit 1
+          fi
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Check distributions
+        run: twine check dist/*
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{ steps.version.outputs.tag }}" -m "Release ${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" dist/* \
+            --title "${{ steps.version.outputs.tag }}" \
+            --generate-notes \
+            --verify-tag
+
+      - name: Publish to PyPI
+        if: ${{ inputs.publish_to_pypi }}
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload --skip-existing dist/*
