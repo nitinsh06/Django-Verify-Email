@@ -267,8 +267,8 @@ URL names you can `reverse`/link to: `verify-email`,
 # install dev dependencies
 pip install -e ".[dev]"
 
-# run the test suite (uses tests/settings.py)
-DJANGO_SETTINGS_MODULE=tests.settings pytest verify_email
+# run the test suite (config + settings come from pyproject.toml / tests/)
+pytest
 
 # or across all supported Python/Django versions
 tox

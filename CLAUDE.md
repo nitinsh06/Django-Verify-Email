@@ -40,15 +40,14 @@ Read `GetFieldFromSettings.defaults_configs` for the authoritative list. Key one
 
 ## Tests
 
-`verify_email/tests.py` uses `django.test.TestCase` and exercises the real send/verify flow against the configured user model and mail outbox. The repo ships a minimal harness in `tests/` (`tests/settings.py`, `tests/urls.py`). Run them with either:
+Tests live **outside** the shipped package, in the root `tests/` package (`tests/test_verify_email.py` plus the `tests/settings.py` / `tests/urls.py` harness), so nothing test-related is published to PyPI. They use `django.test.TestCase` and exercise the real send/verify flow against the configured user model and mail outbox. Run them with:
 
 ```
-DJANGO_SETTINGS_MODULE=tests.settings pytest verify_email
-DJANGO_SETTINGS_MODULE=tests.settings python -m django test verify_email
-tox            # full Python x Django matrix
+pytest          # config (settings module, pythonpath, testpaths) comes from pyproject.toml
+tox             # full Python x Django matrix
 ```
 
-`tests/urls.py` mounts `verify_email.urls` at `verification/` and defines a `login` URL (needed because the success view reverses `LOGIN_URL`). Several tests use `time.sleep` to assert expiry behaviour, so the suite is intentionally slow. The `tests/` package is excluded from the built wheel/sdist.
+`pyproject.toml` sets `pythonpath = ["."]` so the `tests` package resolves under the `pytest` console script (pytest-django reads `DJANGO_SETTINGS_MODULE = tests.settings` early, before pytest's own path insertion — without `pythonpath` it fails in CI with `No module named 'tests'`). `tests/urls.py` mounts `verify_email.urls` at `verification/` and defines a `login` URL (the success view reverses `LOGIN_URL`). Several tests use `time.sleep` to assert expiry behaviour, so the suite is intentionally slow.
 
 ## Build & release
 

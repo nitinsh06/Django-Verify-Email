@@ -50,7 +50,12 @@ exclude = ["tests*"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.settings"
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
+# Put the repo root on sys.path early (before pytest-django reads the settings
+# module) so `tests.settings` resolves under the `pytest` console script, not
+# just `python -m pytest`.
+pythonpath = ["."]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
 
 [tool.black]
 line-length = 88

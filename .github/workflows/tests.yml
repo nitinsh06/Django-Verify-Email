@@ -40,6 +40,4 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "Django~=${{ matrix.django-version }}.0" pytest pytest-django
       - name: Run tests
-        env:
-          DJANGO_SETTINGS_MODULE: tests.settings
-        run: pytest verify_email
+        run: pytest
