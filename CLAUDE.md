@@ -51,7 +51,9 @@ tox             # full Python x Django matrix
 
 ## Build & release
 
-Packaging metadata lives entirely in `pyproject.toml` (PEP 621; there is no longer a `setup.py`/`setup.cfg`). `Django>=4.2` is a declared dependency. Build with `python -m build`; validate with `twine check dist/*`. Releases publish to PyPI via `.github/workflows/python-publish.yml` (on push to `main`, on a published GitHub release, or manual dispatch). `.github/workflows/tests.yml` runs the test matrix on push/PR. Bump `version` in `pyproject.toml` for a release and add a `CHANGELOG.md` entry.
+Packaging metadata lives entirely in `pyproject.toml` (PEP 621; there is no longer a `setup.py`/`setup.cfg`). `Django>=4.2` is a declared dependency. Build with `python -m build`; validate with `twine check dist/*`.
+
+Releasing is **manual and tag-based** — there is no publish-on-merge. To release: bump `version` in `pyproject.toml` and add a `CHANGELOG.md` entry (in a PR), merge to `main`, then run the **Release** workflow (`.github/workflows/release.yml`, `workflow_dispatch`). It runs the tests, builds, uploads to PyPI (toggle `publish_to_pypi`, default on), pushes the `v<version>` tag, and creates a GitHub Release with the artifacts. The version in `pyproject.toml` is the single source of truth (the workflow refuses to run if `v<version>` already exists). `.github/workflows/tests.yml` runs the test matrix on push/PR.
 
 ## Conventions
 

@@ -67,7 +67,11 @@ template paths and settings names are unchanged.
 ### Packaging / tooling
 - Consolidated packaging metadata into `pyproject.toml` (PEP 621); removed
   `setup.cfg`/`setup.py`. Fixed the author email and stale/incorrect classifiers.
-- Added a test suite harness (`tests/settings.py`, `tests/urls.py`), a `tox`
-  matrix and a GitHub Actions test workflow across supported Python/Django
-  versions.
-- Modernised the publish workflow to use `python -m build` + `twine check`.
+- Tests moved out of the installed package (into the repo-root `tests/` package),
+  so the published wheel/sdist contain only `verify_email` — no test code.
+- Added a `tox` matrix and a GitHub Actions test workflow across supported
+  Python/Django versions (`tests.yml`).
+- Releasing is now **manual and tag-based** via the `Release` workflow
+  (`release.yml`): it builds with `python -m build`, validates with
+  `twine check`, uploads to PyPI, tags `v<version>`, and creates a GitHub
+  Release. (There is no publish-on-merge.)

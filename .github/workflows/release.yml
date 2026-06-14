@@ -1,12 +1,13 @@
 name: Release
 
-# Manually-triggered release. Builds the package, tags the commit as
-# v<version> (version is read from pyproject.toml), and publishes a GitHub
-# Release with the wheel + sdist attached.
+# Manually-triggered release — the single path to PyPI for this project.
+# Builds the package, tags the commit as v<version> (version is read from
+# pyproject.toml), uploads to PyPI, and publishes a GitHub Release with the
+# wheel + sdist attached.
 #
-# PyPI upload is OFF by default here, because routine PyPI publishing already
-# happens on merge to main (see python-publish.yml). Flip "publish_to_pypi" on
-# if you want this manual release to also push to PyPI.
+# To cut a release: bump `version` in pyproject.toml (in a PR) and update
+# CHANGELOG.md, merge to main, then run this workflow. Uncheck "publish_to_pypi"
+# if you only want a GitHub Release/tag without pushing to PyPI.
 
 on:
   workflow_dispatch:
@@ -16,9 +17,9 @@ on:
         required: false
         default: ""
       publish_to_pypi:
-        description: "Also upload the built distributions to PyPI"
+        description: "Upload the built distributions to PyPI"
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write # create tags and GitHub Releases
@@ -82,6 +83,16 @@ jobs:
       - name: Check distributions
         run: twine check dist/*
 
+      # PyPI first: it is the irreversible step. Doing it before tagging means a
+      # failed upload leaves no dangling tag, so the run can be retried cleanly
+      # (and --skip-existing makes a retry a no-op if the upload already landed).
+      - name: Publish to PyPI
+        if: ${{ inputs.publish_to_pypi }}
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload --skip-existing dist/*
+
       - name: Create and push tag
         run: |
           git config user.name "github-actions[bot]"
@@ -97,10 +108,3 @@ jobs:
             --title "${{ steps.version.outputs.tag }}" \
             --generate-notes \
             --verify-tag
-
-      - name: Publish to PyPI
-        if: ${{ inputs.publish_to_pypi }}
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: twine upload --skip-existing dist/*
