@@ -1,30 +1,72 @@
+name: Publish to PyPI
 
-name: Upload Python Package
+# On every merge to main: run the tests, publish the version currently in
+# pyproject.toml to PyPI, then auto-bump the patch version and commit it back so
+# the next merge publishes a new version. The bump commit is tagged "[skip ci]"
+# so it does not re-trigger this workflow.
+#
+# For a minor/major release, bump the version in pyproject.toml by hand in your
+# PR; that version is published as-is and patch auto-bumping continues from there.
 
 on:
   push:
-    branches:
-      - main 
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: publish-pypi
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
-
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        python setup.py sdist bdist_wheel
-        twine upload --skip-existing dist/*
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install Django pytest pytest-django
+      - name: Run tests
+        env:
+          DJANGO_SETTINGS_MODULE: tests.settings
+        run: pytest verify_email
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install build tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build twine
+      - name: Build distributions
+        run: python -m build
+      - name: Check distributions
+        run: twine check dist/*
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload --skip-existing dist/*
+      - name: Bump patch version for the next release
+        id: bump
+        run: echo "version=$(python .github/scripts/bump_version.py)" >> "$GITHUB_OUTPUT"
+      - name: Commit and push version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml
+          git commit -m "chore: bump version to ${{ steps.bump.outputs.version }} [skip ci]"
+          git push

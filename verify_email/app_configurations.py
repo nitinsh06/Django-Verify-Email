@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from django.conf import settings
+
 from .interface import DefaultConfig
 
 
@@ -79,16 +80,17 @@ class GetFieldFromSettings:
             "max_retries": DefaultConfig(setting_field="MAX_RETRIES", default_value=2),
         }
 
-    def get(self, field_name, raise_exception=True, default_type=str):
-        attr = getattr(
-            settings,
-            self.defaults_configs[field_name].setting_field,  # get field from settings
-            self.defaults_configs[
-                field_name
-            ].default_value,  # get default value if field not defined
-        )
-        if not attr and not isinstance(field_name, default_type) and raise_exception:
-            if field_name == "verification_success_template" and attr is None:
-                return None
-            raise AttributeError
+    def get(self, field_name, raise_exception=True):
+        config = self.defaults_configs[field_name]
+        attr = getattr(settings, config.setting_field, config.default_value)
+
+        # Documented feature: setting VERIFICATION_SUCCESS_TEMPLATE = None
+        # intentionally skips the success page and redirects to LOGIN_URL.
+        if field_name == "verification_success_template" and attr is None:
+            return None
+
+        if attr is None and raise_exception:
+            raise AttributeError(
+                f"Set the '{config.setting_field}' value in your project's settings.py."
+            )
         return attr

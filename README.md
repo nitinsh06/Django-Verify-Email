@@ -1,394 +1,287 @@
+# Django-Verify-Email
 
+[![PyPI version](https://img.shields.io/pypi/v/Django-Verify-Email.svg)](https://pypi.org/project/Django-Verify-Email/)
+[![Python versions](https://img.shields.io/pypi/pyversions/Django-Verify-Email.svg)](https://pypi.org/project/Django-Verify-Email/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-<h1 style='text-align:center'>Email-Verification for Django</h1>
+Drop-in **two-step email verification** for Django sign-ups. On registration the
+app deactivates the new account, emails the user a signed, single-use
+verification link, and re-activates the account when that link is opened — all
+without you writing any verification views.
 
-Email verification for new signups or new users is a two-step verification process and adds a layer for security for valid users.
+- **Compatible with** Django 4.2, 5.0, 5.1, 5.2 on Python 3.8–3.12.
+- Works with any `AUTH_USER_MODEL` (uses `get_user_model()`).
+- Signed, expiring links built on Django's own token machinery.
+- Built-in "resend verification email" flow (by form or from an expired link).
+- Every page and email is template-overridable.
 
-<b> verify_email </b> is a django app that provides this functionality right of the bat without any complex implementation.
+> **Upgrading?** See [`CHANGELOG.md`](CHANGELOG.md). `3.1.0` is a
+> backwards-compatible release; public imports, URL names, template paths and
+> settings are unchanged.
 
-<hr>
+---
 
-## Version Update (2.0.0):
+## How it works
 
-<hr>
+1. You call `send_verification_email(request, form)` from your signup view.
+2. The app saves the user with `is_active = False` and emails a verification link.
+3. The user clicks the link; the app validates the signed token, sets
+   `is_active = True` and `last_login = now()`, and shows a success page (or
+   redirects straight to login).
+4. Used, tampered, or expired links are rejected and routed to the appropriate
+   page; expired links can offer the user a new one.
 
-> This version contains breaking changes and is not compatible with the previous version 1.0.9
+You do **not** write any verification view — the app ships its own URLs and views.
 
-### What's in this update
-**Features:**
-* Added feature for **re-requesting email** in case the previous email was lost or deleted by mistake
-* Added a variable `REQUEST_NEW_EMAIL_TEMPLATE` where user can specify his custom template for requesting email again. More on this <a href='#resending-email-using-form'>here</a>.
-* Added a Django form for requesting email with a field `email`.
-
-Read about this feature <a href='#resending-email-using-form'>here</a>
-
-**Bug Fixes:**
-* Fixed a bug where the user was not able to request a new email using the previous link in case if the link expires.
- 
- **Others**
- * Using exceptions instead of normal string errors
- * code cleanup
-
-<hr><hr>
-
-## The app takes care of :
-* Settings user's is_active status to False.
-* Generate hashed token for each user.
-* Generate a verification link and send it to the user's email.
-* Recieve a request from the verification link and verify for its validity.
-* Activating the user's account.
-
-## What you have to implement is :
-* Three steps in <a href='#quickstart'>Quick start</a> below...
-
-<b>Note : </b>The app is designed to be used right of the bat, however, further customizations options are also provided in <a href="#advance">Advance</a> section below.
-
+---
 
 ## Installation
 
-NOTE: Don't forget to activate the virtual environment if you have one.
-
-```
+```bash
 pip install Django-Verify-Email
 ```
 
-<p id='quickstart'>
-<h2>Quick start</h2> <hr>
-</p>
+### 1. Configure email (skip if your project already sends mail)
 
-The steps to getting started are very simple. Like any other app, this can be installed easily by adding "verify_email" in your installed apps like:
-
-<b>Note: </b>This documentation assumes that you already have a mail server configured for your project to send mails. 
-
-if not, then your first step should be Step 0:
-
-### Step 0 :-
-
---- Bypass this step if you already have these things set up for your project. ---
-
-In your settings.py :
-```
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+```python
+# settings.py
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_ID') 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PW')
+EMAIL_HOST_USER = os.environ["EMAIL_ID"]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_PW"]
 
-DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
+DEFAULT_FROM_EMAIL = "noreply <no_reply@domain.com>"
 ```
 
-## Main steps... <hr>
+### 2. Add the app
 
-### Step 1 :-
-Add "verify_email" to your INSTALLED_APPS setting like this:
-```
-    INSTALLED_APPS = [
-        ...
-        "verify_email.apps.VerifyEmailConfig",
-    ]
-```
-<p id="step2">
-<h3>Step 2 :-</h3>
-
-Include the "verify_email" URLconf in your project urls.py like this:
-
-
-```
-
-urlpatterns = [
-	...
-	path('verification/', include('verify_email.urls')),	
-
+```python
+INSTALLED_APPS = [
+    # ...
+    "verify_email.apps.VerifyEmailConfig",
 ]
 ```
-</p>
 
-<p id="step3">
-<h3>Step 3 :-</h3>
+### 3. Include the URLs
 
-Apply migrations...
-
-
+```python
+# project/urls.py
+urlpatterns = [
+    # ...
+    path("verification/", include("verify_email.urls")),
+]
 ```
+
+### 4. Run migrations
+
+```bash
 python manage.py migrate
 ```
-</p>
 
+### 5. Send the verification email from your signup view
 
-
-### Step 4 :-
-For sending email from a signup form, in your views.py import:
-
-```
-...
+```python
 from verify_email.email_handler import send_verification_email
-```
-Now in the function where you are validating the form:
-
-```
-...
 
 def register_user(request):
-    ...
-    
+    form = MySignupForm(request.POST)
     if form.is_valid():
-
         inactive_user = send_verification_email(request, form)
+        # `inactive_user` is the saved user (is_active=False).
+        # Access submitted data via inactive_user.cleaned_data['email'], etc.
+        ...
 ```
 
-<b>Attention : </b>"send_verification_email()" takes two arguments, requests and form in order to set user's active status. 
+`send_verification_email(request, form)` saves the user as inactive and sends the
+link — you don't call `form.save()` yourself. **If sending the email fails, the
+user is rolled back (deleted)** so the visitor can retry.
 
-The "inactive_user" that is returned by "send_verification_email()" contains a saved user object just like form.save() would do(with is_active status set as False), which you can further use to extract user information from cleaned_data dictionary, as shown below :
+> Your form must have an `email` field. If it's named differently, set
+> [`EMAIL_FIELD_NAME`](#configuration).
 
+That's it — verification is fully handled by the app from here.
+
+---
+
+## Configuration
+
+All settings are optional and read from your project's `settings.py`.
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| `SUBJECT` | `"Email Verification Mail"` | Subject line of the verification email. |
+| `EMAIL_FIELD_NAME` | `"email"` | Name of the email field on your signup form. |
+| `HTML_MESSAGE_TEMPLATE` | `verify_email/email_verification_msg.html` | Template for the email body. Must render `{{ link }}`. |
+| `DEFAULT_FROM_EMAIL` | Django's default | From address for the email. |
+| `LOGIN_URL` | `"accounts_login"` | URL name the success page links to. Also used by Django. |
+| `VERIFICATION_SUCCESS_TEMPLATE` | `verify_email/email_verification_successful.html` | Success page. Set to `None` to skip it and redirect straight to `LOGIN_URL`. |
+| `VERIFICATION_SUCCESS_MSG` | *(sensible default)* | Message shown on success. |
+| `VERIFICATION_FAILED_TEMPLATE` | `verify_email/email_verification_failed.html` | Page shown for invalid/failed links. |
+| `LINK_EXPIRED_TEMPLATE` | `verify_email/link_expired.html` | Page shown when a link has expired. |
+| `VERIFICATION_FAILED_MSG` | *(sensible default)* | Message shown on failure. |
+| `REQUEST_NEW_EMAIL_TEMPLATE` | `verify_email/request_new_email.html` | Page hosting the "request a new link" form. |
+| `NEW_EMAIL_SENT_TEMPLATE` | `verify_email/new_email_sent.html` | Confirmation page after a new link is requested. |
+| `EXPIRE_AFTER` | `None` | Link lifetime. See [Link expiry](#link-expiry). |
+| `MAX_RETRIES` | `2` | How many times a user may request a new link. |
+| `HASHING_KEY` | project `SECRET_KEY` | Key used to sign links. |
+| `HASH_SALT` | `None` | Optional salt for the signer. |
+| `SEPARATOR` | `":"` | Separator used by the signer. Must not be in the URL-safe base64 alphabet. |
+
+---
+
+## Link expiry
+
+By default a link stays valid until it is used (subject to Django's
+`PASSWORD_RESET_TIMEOUT`, which the underlying token honours — 3 days by
+default). To set an explicit expiry, define `EXPIRE_AFTER`:
+
+```python
+EXPIRE_AFTER = "1d"   # 1 day
+EXPIRE_AFTER = "2h"   # 2 hours
+EXPIRE_AFTER = "30m"  # 30 minutes  (m = minutes, not months)
+EXPIRE_AFTER = 90     # bare integer = seconds
 ```
-inactive_user.cleaned_data['email']
 
-# Output: test-user123@gmail.com
-```
-The user is already being saved as inactive and you don't have to .save() it explicitly.
+Supported suffixes: `s` (seconds), `m` (minutes), `h` (hours), `d` (days). A
+bare integer is treated as seconds.
 
-<b>If anything goes wrong in sending the verification link email, the user will not be saved, so that the user can try again.</b>
+---
 
+## Resending verification emails
 
+A user may request a new link up to `MAX_RETRIES` times (default `2`). After
+that they are shown a "maxed out" page.
 
-### At this point, you are good to go...
- Start the development server and signup with an email and you should be getting an email on the entered email with the default template for account activation. (You can provide your own HTML template. see <a href='#advance'>Advance Section</a>)
+**From an expired link.** The expired-link page includes a button to request a
+new email — no extra setup needed.
 
- <b>Note : </b>The app comes with default email templates which can be overriden. See <a href='#customemailtemplate'> Custom Email Templates</a>
-
-# Verifying User's email : 
-
-<h3 style='text-align:center'>Nothing...</h3><br>
-
-That's right! , you don't have to implement any other code for validating users with their respective unique tokens and emails. 
-
-<b>The app takes care of everything in the background.</b>
-
-* When the user clicks on the verification link, it comes to :
-    ```
-    path('verification/', include('verify_email')),
-    ```
-    which you defined in your project's urls.py in <a href='#step2'>step 2</a> above.
-* This pattern is further extended in this app's urls.py where it accepts encoded email and encoded hashed tokens from the verification link.
-* It then checks for users by that email.
-* If the user exists, it then checks for a token if it is valid for that user or not.
-* If the token is valid, it activates the user's account by setting is_active attribute to True and last_login to timezone.now().
-* If the token is already been redeemed or modified, you'll be redirected to a "verification failed" page.
-
-#### This whole process from generating HMAC hashed token for each user to verify it for a unique user, is abstracted within the app 😃.
-
-
-
-<p id="advance">
-
-<h1>Advance</h1>
-
-<p id="link-expiring">
-<h2>Expiration of link and Resending emails :</h2>
-If you want your link to expire after a certain amount of time, you can use signed links, <b>All you have to do is just set a variable in the settings.py file and BAMM! you got yourself a link that will expire after the specified time.</b><br>
-It's that simple, just setting a variable. <br><br>
-If you don't set this variable, the link will expire after being used at least once. 
-<br>
-
-The link, by default, does not expire until it has been used at least once, however, you can 
-**change** this behavior by specifying the time as
-"EXPIRE_AFTER" in settings.py. The variable can be set as :
-* By default the time is considered in seconds, so if you set "EXPIRE_AFTER" as an integer, that will be considered in seconds.
-* You can specify time unit for large times, max unit is days.
-* **Its very simple** just suffix the "EXPIRE_AFTER" variable's value with a time unit from ["s", "m", "h", "d"]. (Keep in mind, the "m" here is minutes, not month)
-
-**Example**
-
-* If I have to make a link expire after **one-day**, then I'd do:
-    * EXPIRE_AFTER = "1d"  # Will expire after one day from link generation
-
-* If I have to make a link expire after **one-hour**, then I'd do:
-    * EXPIRE_AFTER = "1h"  # Will expire after one hour from link generation
-    
-* If I have to make a link expire after **one-minute**, then I'd do:
-    * EXPIRE_AFTER = "1m"  # Will expire after 1 minute from link generation
-
-**Note:** By default, if you do not specify a unit, it'll be considered in seconds.
-</p>
-
-<p id="resending-email">
-<h2>Re-Sending Email</h2> <hr>
-</p>
-
-A user can request a new verification link **For a specific no. of times** in case the previous one has expired. By default, a user can request
-new link **two times** which, obviously can be modified by you.
-
-Set a "MAX_RETRIES" variable in settings.py specifying the no. of times a user is allowed to request a new link.
-
-After that no. is exceeded, the user will be automatically redirected to an error page showing that you have maxed out.
-
-<p id="resending-email-using-link">
-<h2>Re-Sending Email using previous link</h2> 
-</p>
-When the link expires, the user will be redirected to a page displaying that the link is expired and has a button to request a new email, now as long as the user hasn't exceeded max retries, the user can request a new email simply by clicking on that button.
-
-<p id='resending-email-using-form'>
-<h2>Resend Email using Email Form</h2> 
-</p>
-
-In case when previous email/link is lost or deleted by the client, they can request a new email by specifying their email.
-
-The path for that is `https://yourdomain/verification/user/verify-email/request-new-link/`, at this path, there will be a form that will ask for the email of the registered user.
-
-The pathname is `request-new-link-from-email` which you can use to create a button on your front end and redirect traffic to the request email page.
-Something like:
+**From a form.** Link users to the request form via its URL name:
 
 ```html
-<a href="{% url 'request-new-link-from-email' %}">
+<a href="{% url 'request-new-link-from-email' %}">Resend verification email</a>
 ```
 
-This will redirect you to full path `/verification/user/verify-email/request-new-link/`
-
-There are several checks done before sending an email again:
-* if the email is registered and the user's account is not been activated
-* the user hasn't exceeded max retry limit(set by you),
-
-Then a new email will be sent to the given email.
-
-The form template is supposed to be changed unless you are okay with the default template provided with the package.
-
-To set your own custom template for form, set a variable name `REQUEST_NEW_EMAIL_TEMPLATE` in settings.py with the path of template you want to use. Example:
-```py
-REQUEST_NEW_EMAIL_TEMPLATE = 'mytemplates/mycustomtemplate.html'
-```
-and then your template will be displayed at the path.
-
-**Making Form:** while making your custom template, keep in mind that the view will pass a variable named `form` to the provided template, this form will contain only 1 field `email`. Sample code that you can use while making your template is here:
+This serves a form with a single `email` field. To customise it, point
+`REQUEST_NEW_EMAIL_TEMPLATE` at your own template (the view passes a `form` in the
+context):
 
 ```html
-<form method='POST' >
-            {% csrf_token %}
-    
-            <fieldset>
-                {{form}}
-            </fieldset>
-    
-            <div style="margin-top: 50px;">
-                <button class="btn btn-outline-info" type="submit">Request New Email</button>
-            </div>
+<form method="POST">
+  {% csrf_token %}
+  <fieldset>{{ form }}</fieldset>
+  <button type="submit">Request New Email</button>
 </form>
 ```
-You can apply your styles or whatever you want. (this code is used in the default template)
 
+> The resend form is **enumeration-safe**: it returns the same response whether
+> or not the address is registered, and whether or not the account is already
+> active. It will not reveal which emails exist. (See
+> [Security](#security-notes).)
 
-**NOTE:** This info is stored in the database so you have to apply migrations (<a href='#step3'>step 3</a>) to use this feature. 
-</p>
+> This feature stores per-user counters in the database, so make sure you've run
+> migrations (step 4).
 
-<p id="customemailtemplate">
+---
 
-<h2>Custom Email Templates : </h2>
+## Customising templates
 
-The app is packed with default HTML templates to handle the web pages but if you want to provide your own template you can do it by setting an attribute in settings.py :
+Override any page or the email body by pointing the relevant setting at your own
+template (see the [Configuration](#configuration) table).
 
-```
-HTML_MESSAGE_TEMPLATE = "path/to/html_template.html"
+**Email body** (`HTML_MESSAGE_TEMPLATE`) — context: `{{ request }}`, `{{ link }}`.
+You **must** include `{{ link }}` or the email won't contain a working link:
 
-VERIFICATION_SUCCESS_TEMPLATE = "path/to/success.html"
-
-VERIFICATION_FAILED_TEMPLATE = "path/to/failed.html"
-
-REQUEST_NEW_EMAIL_TEMPLATE = "path/to/email.html"
-
-LINK_EXPIRED_TEMPLATE = 'path/to/expired.html'
-
-NEW_EMAIL_SENT_TEMPLATE  = 'path/to/new_email_sent.html'
-```
-```
-SUBJECT = 'subject of email'
-
-# default subject is: Email Verification Mail
-```
-</p>
-
-## Inside Templates : <hr>
-
-### Custom HTML Message Template :
-
-Two variables are passed in context dict of "HTML_MESSAGE_TEMPLATE" :
-
-* ```{{request}}``` : Which is the same request passed in to send_verification_email.
-* ```{{link}}``` : Which contains verification link
-
-<b>IMPORTANT : </b> if you are using custom html message template for email that has to be sent to user, <u>provide a <b>{{link}}</b> as a template tag to contain verification link.</u> 
-
-<b>You Must Pass This In Your Template</b>. Otherwise, the sent mail will not contain the verification link.
-
-
-For Ex :
-
-```my_custom_email_message.html : ```
-
-```
-<div class="format-font" >
-    <a href="{{link}}" class="my-button" >Verify</a>  # ----> The "link" variable is passed by the app's backend containing verification link.
-</div>
+```html
+<a href="{{ link }}">Verify your email</a>
 ```
 
-----> "link" is a variable, that contains a verification link, and is passed in an HTML message template during sending the email to the user.
+**Success page** (`VERIFICATION_SUCCESS_TEMPLATE`) — context: `{{ msg }}`,
+`{{ link }}` (login URL), `{{ status }}`:
 
-
-### Custom HTML Verification Success and Failed pages : 
-<hr>
-
-<b>Success :</b> 
-
-Two variables are passed in the context dictionary of "VERIFICATION_SUCCESS_TEMPLATE" :
-
-* ```{{mgs}}```: Which contains the message to be displayed on successful verification.
-* ```{{link}}```: Which contains a redirect link to the login page.
-
-<b>In template :</b>
-
-```
-<h1 style="text-align: center; color: white;">
-    {{msg}}     # __--> message variable
-</h1>
-
-<a href="{{link}}" class="btn btn-primary">     # __--> Link of login page
-    Login
-</a>
-
+```html
+<h1>{{ msg }}</h1>
+<a href="{{ link }}">Login</a>
 ```
 
-<b>Failed :</b>
+**Failed / expired pages** — context includes `{{ msg }}` and `{{ status }}`.
 
-Only "{{msg}}" is passed for failed msg in the template.
+### Redirecting to login after success
 
+- **Show a success page** that links to login: set `LOGIN_URL` to your login URL
+  name.
+- **Skip the success page** and go straight to login: set
+  `VERIFICATION_SUCCESS_TEMPLATE = None`.
 
-<b>In template :</b>
+---
 
+## Security notes
+
+- Links are signed with Django's `TimestampSigner` using your `SECRET_KEY` (or a
+  custom `HASHING_KEY`). Tampered links produce a `BadSignature` and are rejected
+  outright — a modified link cannot be used to request a fresh one.
+- The verification token is Django's `default_token_generator` token, bound to
+  the user's password hash and `last_login`. Activating the account updates
+  `last_login`, which **invalidates the link**, making links effectively
+  single-use even without `EXPIRE_AFTER`.
+- The "request a new email" form is enumeration-safe (identical response for
+  unknown / pending / already-active accounts).
+- Already-active accounts are never re-activated, even if a still-valid token is
+  presented.
+- Internal error details are only shown to end users when the project runs with
+  `DEBUG = True`.
+
+### Operational hardening (recommended)
+
+- **Bound the resend window with `PASSWORD_RESET_TIMEOUT`.** By design, the
+  "request a new link" button on an *expired*-link page accepts the expired
+  token to mint a fresh link (that's the feature). The window in which an old
+  link can still be exchanged for a new one is therefore governed by Django's
+  `PASSWORD_RESET_TIMEOUT` (default **3 days**), independently of `EXPIRE_AFTER`,
+  and is capped per user by `MAX_RETRIES`. If you set a short `EXPIRE_AFTER`,
+  also lower `PASSWORD_RESET_TIMEOUT` to match your intended link lifetime.
+- **Add request throttling.** The package caps resends per user (`MAX_RETRIES`)
+  but does not rate-limit by IP, and the resend form is not constant-time (it
+  sends an email only for valid pending accounts, a subtle timing signal). For
+  internet-facing signups, put a throttle (e.g. `django-ratelimit`) in front of
+  the resend endpoints and consider sending email asynchronously.
+
+---
+
+## Public API
+
+```python
+from verify_email.email_handler import send_verification_email  # primary entry point
+from verify_email.errors import VerifyEmailError                # base of all package exceptions
 ```
-<h1 style="text-align: center; color: white;">
-    {{msg}}
-</h1>
+
+URL names you can `reverse`/link to: `verify-email`,
+`request-new-link-from-token`, `request-new-link-from-email`.
+
+---
+
+## Development
+
+```bash
+# install dev dependencies
+pip install -e ".[dev]"
+
+# run the test suite (uses tests/settings.py)
+DJANGO_SETTINGS_MODULE=tests.settings pytest verify_email
+
+# or across all supported Python/Django versions
+tox
 ```
 
+---
 
+## Contributing
 
-## Successful Verification :
-After verification is successful, you might want to redirect the user to the login page. You can do this in two ways :
+Issues and pull requests are welcome at
+<https://github.com/foo290/Django-Verify-Email>. There is always room for
+improvement — feel free to open an issue or PR.
 
-* 1 <b>Redirect from success webpage.</b>
-	The user will be prompted to show a success page with a button on it to navigate to the Login page.
-    ```
-    LOGIN_URL = 'name of your login pattern'
+## License
 
-    Note: This variable is also used by Django.
-    ```
-* 2 <b>Redirect directly to the login page without stopping at the success message page.</b>
-	The user will be directly sent to the login page, bypassing the success page.
-    ```
-    VERIFICATION_SUCCESS_TEMPLATE = None
-    ```
-</p>
-
-
-> There is always room for improvements and new ideas, feel free to raise PR or Issues
-
-
+Released under the [MIT License](LICENSE).

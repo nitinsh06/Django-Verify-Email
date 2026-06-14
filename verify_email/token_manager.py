@@ -1,23 +1,24 @@
 import logging
-from dataclasses import dataclass, field
-from typing import Union, List
-from datetime import timedelta
+from base64 import urlsafe_b64decode, urlsafe_b64encode
 from binascii import Error as BASE64ERROR
-from base64 import urlsafe_b64encode, urlsafe_b64decode
+from dataclasses import dataclass, field
+from datetime import timedelta
+from typing import List, Union
 
-from django.core import signing
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
+from django.core import signing
+from django.urls import reverse
 
-from .custom_types import User
 from .app_configurations import GetFieldFromSettings
+from .custom_types import User
 from .errors import (
-    UserAlreadyActive,
+    DecodingFailed,
+    InvalidToken,
     MaxRetriesExceeded,
+    UserAlreadyActive,
     UserNotFound,
     WrongTimeInterval,
-    InvalidToken,
-    DecodingFailed,
 )
 
 __all__ = ["TokenManager"]
@@ -53,26 +54,39 @@ class SafeURL:
 class ActivationLinkManager(GeneralConfig):
 
     @staticmethod
-    def _get_sent_count(user: User):
+    def _get_or_create_counter(user: User):
         """
-        Returns the no. of times email has already been sent to a user.
-        """
-        return int(user.linkcounter.sent_count)
+        Return the user's :class:`LinkCounter`, creating it on first use.
 
-    @staticmethod
-    def _increment_sent_counter(user: User) -> None:
+        The counter is created lazily (the first time a resend is attempted)
+        rather than eagerly for every user in the project. ``sent_count`` starts
+        at ``1`` to account for the initial verification email, preserving the
+        historical resend-limit behaviour. Existing rows (created by older
+        versions' signal) are reused untouched.
         """
-        Increment count by one after resending the verification link.
+        # Imported lazily: importing models at module load would touch the app
+        # registry before it is ready.
+        from .models import LinkCounter
+
+        counter, _ = LinkCounter.objects.get_or_create(
+            requester=user, defaults={"sent_count": 1}
+        )
+        return counter
+
+    def _increment_sent_counter(self, user: User) -> None:
         """
-        user.linkcounter.sent_count += 1
-        user.linkcounter.save()
+        Increment the sent counter by one after resending the verification link.
+        """
+        counter = self._get_or_create_counter(user)
+        counter.sent_count += 1
+        counter.save(update_fields=["sent_count"])
 
     def can_request_new_link(self, user: User) -> bool:
         """
-        Checks if the user has remaining attempts to request a new link.
+        Return ``True`` if the user still has resend attempts remaining.
 
-        Compares the user's current request count with the maximum allowed retries.
-        Returns False if the maximum retries have been reached, True otherwise.
+        Compares the user's current sent count against ``MAX_RETRIES``; returns
+        ``False`` once the maximum has been reached.
 
         Parameters
         ----------
@@ -84,7 +98,7 @@ class ActivationLinkManager(GeneralConfig):
         bool
             True if the user has remaining attempts, False if the maximum is exceeded.
         """
-        attempts = self._get_sent_count(user)
+        attempts = self._get_or_create_counter(user).sent_count
         if attempts and attempts >= self.max_retries:
             return False
         return True
@@ -92,29 +106,31 @@ class ActivationLinkManager(GeneralConfig):
     @staticmethod
     def generate_link(token, user_email):
         """
-        Generates an email verification link for an inactive user.
+        Build the relative verification URL for an inactive user.
 
-        This method creates a signed token for the user and encodes the user's email
-        to construct a unique verification link.
+        The URL is resolved via ``reverse('verify-email', ...)`` so it honours
+        wherever the project mounts ``verify_email.urls`` instead of assuming a
+        hard-coded ``/verification/`` prefix.
 
         Parameters
         ----------
-        request : HttpRequest
-            The HTTP request object, used to build the absolute URL for the link.
         token : str
-            user encrpted encode token
+            The encoded verification token for the user.
         user_email : str
-            The email address of the user, which will be included in the verification link.
+            The user's email address; base64-url-encoded into the link.
 
         Returns
         -------
         str
-            The absolute URL of the verification link.
+            The relative URL (path) of the verification link.
         """
         encoded_email = urlsafe_b64encode(str(user_email).encode("utf-8")).decode(
             "utf-8"
         )
-        return f"/verification/user/verify-email/{encoded_email}/{token}/"
+        return reverse(
+            "verify-email",
+            kwargs={"user_email": encoded_email, "user_token": token},
+        )
 
     def get_absolute_verification_url(self, request, token, user_email):
         return request.build_absolute_uri(self.generate_link(token, user_email))
@@ -248,14 +264,13 @@ class TokenManager(signing.TimestampSigner, GeneralConfig):
         if isinstance(interval, int):
             return interval
         if isinstance(interval, str):
-            unit = [i for i in self.time_units if interval.endswith(i)]
-            if not unit:
+            matched_units = [u for u in self.time_units if interval.endswith(u)]
+            if matched_units:
+                unit = matched_units[0]
+            else:
+                # No recognised suffix: treat the whole value as seconds.
                 unit = "s"
                 interval += unit
-            else:
-                unit = unit[
-                    0
-                ]  # TODO: look into this, this might cook my ass in some cases
             try:
                 digit_time = int(interval[:-1])
                 if digit_time <= 0:
@@ -267,12 +282,8 @@ class TokenManager(signing.TimestampSigner, GeneralConfig):
                     return timedelta(minutes=digit_time).total_seconds()
                 if unit == "h":
                     return timedelta(hours=digit_time).total_seconds()
-                if unit == "d":
-                    return timedelta(days=digit_time).total_seconds()
-                else:
-                    return WrongTimeInterval(
-                        f"Time unit must be from : {self.time_units}"
-                    )
+                # unit == "d"
+                return timedelta(days=digit_time).total_seconds()
 
             except ValueError:
                 raise WrongTimeInterval(f"Time unit must be from : {self.time_units}")
@@ -362,27 +373,28 @@ class TokenManager(signing.TimestampSigner, GeneralConfig):
     @staticmethod
     def get_user_by_token(plain_email, encrypted_token):
         """
-        returns either a bool or user itself which fits the token and is not active.
+        Return the inactive user whose token matches, or raise.
+
         Exceptions Raised
         -----------------
             - UserAlreadyActive
             - InvalidToken
             - UserNotFound
         """
-        inactive_users = get_user_model().objects.filter(email=plain_email)
-        encrypted_token = encrypted_token.split(":")[0]
-        for unique_user in inactive_users:
-            valid = default_token_generator.check_token(unique_user, encrypted_token)
-            if valid:
-                if unique_user.is_active:
+        users = get_user_model().objects.filter(email=plain_email)
+        if not users:
+            raise UserNotFound(f"User with {plain_email} not found")
+
+        token = encrypted_token.split(":")[0]
+        for user in users:
+            if default_token_generator.check_token(user, token):
+                if user.is_active:
                     raise UserAlreadyActive(
                         f"The user with email: {plain_email} is already active"
                     )
-                return unique_user
-            else:
-                raise InvalidToken("Token is invalid")
-        else:
-            raise UserNotFound(f"User with {plain_email} not found")
+                return user
+        # No user matched the token (checked every user sharing this email).
+        raise InvalidToken("Token is invalid")
 
     def decrypt_token_and_get_user(
         self,
