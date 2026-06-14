@@ -1,16 +1,18 @@
-from dataclasses import dataclass, field
 import logging
+from dataclasses import dataclass, field
 
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 from .app_configurations import GetFieldFromSettings
+from .custom_types import User
 from .errors import InvalidTokenOrEmail
 from .token_manager import TokenManager
-from .custom_types import User
 
 logger = logging.getLogger(__name__)
+
+__all__ = ["ActivationMailManager", "send_verification_email"]
 
 
 @dataclass(frozen=True)
@@ -142,3 +144,16 @@ class ActivationMailManager:
                 f"Error occurred during re sending the email with verification link: {err}"
             )
             raise err
+
+
+def send_verification_email(request, form):
+    """
+    Primary entry point: save ``form``'s user as inactive and email them a
+    verification link.
+
+    This is the documented public API used from a signup view. It is a thin
+    wrapper around :meth:`ActivationMailManager.send_verification_link` and
+    returns the saved (inactive) user, so you do not need to call ``form.save()``
+    yourself. If sending fails the user is rolled back so the visitor can retry.
+    """
+    return ActivationMailManager.send_verification_link(form=form, request=request)

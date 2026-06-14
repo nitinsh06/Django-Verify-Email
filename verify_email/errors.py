@@ -1,33 +1,49 @@
-class UserAlreadyActive(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+"""Exceptions raised by verify_email.
+
+All exceptions inherit from :class:`VerifyEmailError`, so integrators can catch
+the whole family with a single ``except VerifyEmailError`` if they prefer.
+"""
 
 
-class MaxRetriesExceeded(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class VerifyEmailError(Exception):
+    """Base class for every error raised by this package."""
 
 
-class UserNotFound(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class UserAlreadyActive(VerifyEmailError):
+    pass
 
 
-class InvalidToken(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class MaxRetriesExceeded(VerifyEmailError):
+    pass
 
 
-class InvalidTokenOrEmail(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class UserNotFound(VerifyEmailError):
+    pass
 
 
-class WrongTimeInterval(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class InvalidToken(VerifyEmailError):
+    pass
 
 
-class DecodingFailed(Exception):
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+class InvalidTokenOrEmail(VerifyEmailError):
+    pass
+
+
+class WrongTimeInterval(VerifyEmailError):
+    pass
+
+
+class DecodingFailed(VerifyEmailError):
+    pass
+
+
+__all__ = [
+    "VerifyEmailError",
+    "UserAlreadyActive",
+    "MaxRetriesExceeded",
+    "UserNotFound",
+    "InvalidToken",
+    "InvalidTokenOrEmail",
+    "WrongTimeInterval",
+    "DecodingFailed",
+]

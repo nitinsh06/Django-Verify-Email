@@ -1,25 +1,24 @@
 import logging
 
-from django.http import Http404, HttpResponse
-from django.urls import reverse
-from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-from django.core.signing import SignatureExpired, BadSignature
-from django.views.decorators.http import require_GET, require_POST
-
+from django.contrib.auth import get_user_model
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
+from django.core.signing import BadSignature, SignatureExpired
+from django.http import Http404
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.views.decorators.http import require_GET, require_http_methods
 
 from .app_configurations import GetFieldFromSettings
 from .confirm import UserActivationProcess
 from .email_handler import ActivationMailManager
-from .forms import RequestNewVerificationEmail
 from .errors import (
     InvalidToken,
     MaxRetriesExceeded,
     UserAlreadyActive,
     UserNotFound,
 )
+from .forms import RequestNewVerificationEmail
 
 logger = logging.getLogger(__name__)
 
@@ -47,9 +46,7 @@ def verify_and_activate_user(request, user_email, user_token):
     verify the user's email and token and redirect'em accordingly.
     """
     try:
-        verified_activated_user = UserActivationProcess.activate_user(
-            user_email, user_token
-        )
+        UserActivationProcess.activate_user(user_email, user_token)
         if login_page and not success_template:
             messages.success(request, success_msg)
             return redirect(to=login_page)
@@ -59,7 +56,7 @@ def verify_and_activate_user(request, user_email, user_token):
             template_name=success_template,
             context={
                 "msg": success_msg,
-                "status": f"Verification Successful!",
+                "status": "Verification Successful!",
                 "link": reverse(login_page),
             },
         )
@@ -124,124 +121,16 @@ def verify_and_activate_user(request, user_email, user_token):
     except UserNotFound:
         raise Http404("404 User not found")
 
-    except Exception as err:
-        logger.exception(err)
-        flash_msg = "Something went wrong during this process!"
-        if debug:
-            flash_msg = f"""{flash_msg} Developer should look into this.
-            Error Details: {err}
-            (You are seeing error details because app is running in debug mode)
-            """
-        return render(
-            request,
-            status=403,
-            template_name=failed_template,
-            context={
-                "msg": flash_msg,
-                "status": "Failed!",
-            },
-        )
-
-
-
-def request_new_link(request, user_email=None, user_token=None):
-    try:
-        if user_email is None or user_token is None:
-            # request came from re-request email page
-            if request.method == "POST":
-                form = RequestNewVerificationEmail(request.POST)  # do not inflate data
-                if form.is_valid():
-                    form_data: dict = form.cleaned_data
-                    email = form_data["email"]
-
-                    inactive_user = get_user_model().objects.get(email=email)
-                    if inactive_user.is_active:
-                        raise UserAlreadyActive("User is already active")
-                    else:
-                        # resend email
-                        ActivationMailManager.resend_verification_link(
-                            request, email, user=inactive_user, encoded=False
-                        )
-                        return render(
-                            request,
-                            template_name=new_email_sent_template,
-                            context={
-                                "msg": "You have requested another verification email!",
-                                "minor_msg": "Your verification link has been sent",
-                                "status": "Email Sent!",
-                            },
-                        )
-            else:
-                form = RequestNewVerificationEmail()
-            return render(
-                request,
-                template_name=request_new_email_template,
-                context={"form": form},
-            )
-        else:
-            # request came from  previously sent link
-            status = ActivationMailManager.resend_verification_link(
-                request, user_email, token=user_token
-            )
-            if status:
-                return render(
-                    request,
-                    template_name=new_email_sent_template,
-                    context={
-                        "msg": "You have requested another verification email!",
-                        "minor_msg": "Your verification link has been sent",
-                        "status": "Email Sent!",
-                    },
-                )
-            else:
-                messages.info(request, "Something went wrong during sending email :(")
-                logger.error("something went wrong during sending email")
-
-    except ObjectDoesNotExist as error:
-        messages.warning(request, "User not found associated with given email!")
-        logger.error(f"[ERROR]: User not found. exception: {error}")
-        return HttpResponse(b"User Not Found", status=404)
-
-    except MultipleObjectsReturned as error:
-        logger.error(f"[ERROR]: Multiple users found. exception: {error}")
-        return HttpResponse(b"Internal server error!", status=500)
-
-    except KeyError as error:
-        logger.error(f"[ERROR]: Key error for email in your form: {error}")
-        return HttpResponse(b"Internal server error!", status=500)
-
-    except MaxRetriesExceeded as error:
-        logger.error(
-            f"[ERROR]: Maximum retries for link has been reached. exception: {error}"
-        )
-        return render(
-            request,
-            status=403,
-            template_name=failed_template,
-            context={
-                "msg": "You have exceeded the maximum verification requests! Contact admin.",
-                "status": "Maxed out!",
-            },
-        )
-    except InvalidToken:
-        return render(
-            request,
-            template_name=failed_template,
-            context={
-                "msg": "This link is invalid or been used already, we cannot verify using this link.",
-                "status": "Invalid Link",
-            },
-        )
     except UserAlreadyActive:
         return render(
             request,
-            status=403,
             template_name=failed_template,
             context={
-                "msg": "This user's account is already active",
+                "msg": "This account is already verified. You can log in.",
                 "status": "Already Verified!",
             },
         )
+
     except Exception as err:
         logger.exception(err)
         flash_msg = "Something went wrong during this process!"
@@ -258,4 +147,111 @@ def request_new_link(request, user_email=None, user_token=None):
                 "msg": flash_msg,
                 "status": "Failed!",
             },
+        )
+
+
+
+def _email_sent_response(request):
+    """
+    Enumeration-safe confirmation page.
+
+    Rendered identically whether or not the email belongs to a real account
+    and regardless of that account's state, so this endpoint cannot be used to
+    probe which addresses are registered or already verified.
+    """
+    return render(
+        request,
+        template_name=new_email_sent_template,
+        context={
+            "msg": "If an account with that email exists and still needs "
+            "verification, a new link has been sent.",
+            "minor_msg": "Check your inbox (and your spam folder).",
+            "status": "Email Sent!",
+        },
+    )
+
+
+def _failed_response(request, msg, status_label, http_status=403):
+    flash_msg = msg
+    if debug:
+        flash_msg = (
+            f"{msg} (You are seeing extra details because the project runs in DEBUG mode.)"
+        )
+    return render(
+        request,
+        status=http_status,
+        template_name=failed_template,
+        context={"msg": flash_msg, "status": status_label},
+    )
+
+
+@require_http_methods(["GET", "POST"])
+def request_new_link(request, user_email=None, user_token=None):
+    """
+    Re-issue a verification link.
+
+    Two entry points share this view:
+      * The public "request a new email" form (no token in the URL). The
+        response here is deliberately uniform to avoid account enumeration.
+      * The "request new link" button on an expired-link page (email + token in
+        the URL). The caller already holds a token, so specific feedback is safe.
+    """
+    # --- Path 1: public form, no token. Must not leak account existence. ---
+    if user_email is None or user_token is None:
+        if request.method == "POST":
+            form = RequestNewVerificationEmail(request.POST)
+            if form.is_valid():
+                email = form.cleaned_data["email"]
+                try:
+                    inactive_user = get_user_model().objects.get(email=email)
+                    if not inactive_user.is_active:
+                        ActivationMailManager.resend_verification_link(
+                            request, email, user=inactive_user, encoded=False
+                        )
+                except (
+                    ObjectDoesNotExist,
+                    MultipleObjectsReturned,
+                    UserAlreadyActive,
+                    MaxRetriesExceeded,
+                ) as error:
+                    # Swallow: revealing any of these would enable enumeration.
+                    logger.info("Resend request not fulfilled silently: %s", error)
+                except Exception as err:  # noqa: BLE001 - log but stay generic
+                    logger.exception(err)
+                return _email_sent_response(request)
+        else:
+            form = RequestNewVerificationEmail()
+        return render(
+            request,
+            template_name=request_new_email_template,
+            context={"form": form},
+        )
+
+    # --- Path 2: from an expired link (email + token present in the URL). ---
+    try:
+        ActivationMailManager.resend_verification_link(
+            request, user_email, token=user_token
+        )
+        return _email_sent_response(request)
+    except MaxRetriesExceeded as error:
+        logger.error("Maximum retries for link reached: %s", error)
+        return _failed_response(
+            request,
+            "You have exceeded the maximum verification requests! Contact admin.",
+            "Maxed out!",
+        )
+    except UserAlreadyActive:
+        return _failed_response(
+            request, "This account is already active.", "Already Verified!"
+        )
+    except (InvalidToken, UserNotFound):
+        return _failed_response(
+            request,
+            "This link is invalid or has already been used; we cannot verify it.",
+            "Invalid Link",
+        )
+    except Exception as err:
+        logger.exception(err)
+        return _failed_response(
+            request, "Something went wrong during this process!", "Failed!"
         )

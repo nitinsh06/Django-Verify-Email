@@ -1,10 +1,11 @@
 import logging
 from dataclasses import dataclass, field
 
-from .token_manager import TokenManager
-from .custom_types import User
 from django.utils import timezone
 
+from .custom_types import User
+from .errors import UserAlreadyActive
+from .token_manager import TokenManager
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +81,15 @@ class UserActivationProcess:
             user = self.token_manager.decrypt_token_and_get_user(
                 encoded_email, encoded_token
             )
+
+            # Defense-in-depth: never re-activate an already-active account.
+            # Normally the token check already fails for active users (it is
+            # bound to last_login), but an account activated out-of-band could
+            # still present a valid token; refuse rather than reset last_login.
+            if user.is_active:
+                raise UserAlreadyActive(
+                    f"The user with email for token {encoded_email} is already active"
+                )
 
             # Activate the user account
             user.is_active = True

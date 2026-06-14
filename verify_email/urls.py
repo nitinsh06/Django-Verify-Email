@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import verify_and_activate_user, request_new_link
+
+from .views import request_new_link, verify_and_activate_user
 
 urlpatterns = [
     path(
